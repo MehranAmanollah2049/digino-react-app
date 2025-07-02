@@ -51,7 +51,7 @@ export default function Login() {
   return (
     <>
       <div className="w-full relative">
-        <div className="w-full h-[45px] flex items-center justify-between">
+        <div className="w-full h-[36px] flex items-center justify-between">
           <Logo />
           <Link
             to="/"
@@ -69,11 +69,11 @@ export default function Login() {
             </svg>
           </Link>
         </div>
-        <div className="w-full mt-6">
-          <p className="w-full text-center font-bold text-[22px] text-black">
+        <div className="w-full mt-5">
+          <p className="w-full text-right font-bold text-[22px] text-black mb-1">
             ورود یا ثبت نام
           </p>
-          <p className="w-full text-center text-gray-600">
+          <p className="w-full text-right text-gray-600">
             لطفا برای ورود شماره همراه خود را وارد کنید
           </p>
         </div>

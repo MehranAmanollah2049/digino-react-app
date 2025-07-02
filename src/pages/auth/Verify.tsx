@@ -65,7 +65,7 @@ export default function Verify() {
 
     // resend
     const [resendLoading, setResendLoading] = useState(false);
-    const timerDuration = 10;
+    const timerDuration = 120;
 
 
     let resendHandler = () => {
@@ -135,7 +135,7 @@ export default function Verify() {
     return (
         <>
             <div className="w-full relative">
-                <div className="w-full h-[45px] flex items-center justify-between">
+                <div className="w-full h-[36px] flex items-center justify-between">
                     <Logo />
                     <Link
                         to="/auth"
@@ -153,12 +153,12 @@ export default function Verify() {
                         </svg>
                     </Link>
                 </div>
-                <div className="w-full mt-6">
-                    <p className="w-full text-center font-bold text-[22px] text-black mb-1">
+                <div className="w-full mt-5">
+                    <p className="w-full text-right font-bold text-[22px] text-black mb-1">
                         تایید شماره موبایل
                     </p>
-                    <p className="w-full text-center text-gray-600">
-                        کد ۴ رقمی ارسال‌شده به شماره "{phoneNumber}" را وارد کنید.
+                    <p className="w-full text-right text-gray-600">
+                        کد ارسال‌شده به شماره "{phoneNumber}" را وارد کنید.
                     </p>
 
                     <div className="w-full rounded-md bg-gray-100 border border-gray-300 py-3 mt-3 mb-1 flex items-center justify-center">
