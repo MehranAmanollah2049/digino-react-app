@@ -42,9 +42,7 @@ export default function Login() {
             setLoading(false)
           }
         })
-        .catch((e) => {
-          console.log(e);
-          
+        .catch(() => {          
           setLoading(false)
         })
     }
