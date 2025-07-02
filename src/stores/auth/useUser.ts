@@ -5,7 +5,6 @@ import HttpRequest from "../../api/ApiConfig";
 interface UserData {
     id: number,
     name: string,
-    lastname: string,
     phone: number,
     cart: number
 }
