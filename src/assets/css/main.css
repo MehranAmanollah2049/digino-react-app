@@ -1,0 +1,67 @@
+@import "tailwindcss";
+@import "./fonts.css";
+
+body {
+  direction: rtl;
+}
+
+/* roots */
+:root {
+  --theme: #ffa41b;
+  --width: 1100px;
+}
+
+/* config */
+@theme {
+  --font-regular: "yekan_regular";
+  --font-medium: "yekan_medium";
+  --font-bold: "yekan_bold";
+  --font-heavy: "yekan_heavy";
+  --font-fat: "yekan_fat";
+
+  --color-theme: var(--theme);
+}
+
+@layer base {
+  body {
+    @apply font-regular;
+  }
+}
+
+@layer components {
+  .btn-dark {
+    @apply rounded-md relative px-5 flex items-center justify-center text-[15.5px] text-white font-medium bg-black h-[45px];
+  }
+
+  .btn-dark.loading {
+    @apply bg-gray-300 pointer-events-none
+  }
+}
+
+@layer utilities {
+  .w-custom {
+    width: var(--width);
+  }
+}
+
+
+/* packages */
+#nprogress .bar {
+    background-color: var(--theme) !important;
+    height: 3px !important;
+}
+
+#nprogress .peg {
+    box-shadow: 0 0 10px var(--theme), 0 0 5px var(--theme) !important;
+}
+
+#nprogress .spinner-icon {
+  border-top-color: var(--theme) !important;
+  border-left-color: var(--theme) !important;
+}
+
+@media(max-width: 1170px) {
+  :root {
+    --width: 90%;
+  }
+}
