@@ -35,7 +35,7 @@ export default function SearchResult({ product, search }: Props) {
                     <circle cx="7.82495" cy="7.82492" r="6.74142" stroke="gray" strokeWidth="1.5" strokeLinecap="round"
                         strokeLinejoin="round"></circle>
                     <path d="M12.5137 12.8638L15.1568 15.4999" stroke="gray" strokeWidth="1.5" strokeLinecap="round"
-                        stroke-linejoin="round"></path>
+                        strokeLinejoin="round"></path>
                 </svg>
                 <div className="w-[calc(100%-30px)] flex items-start justify-center flex-col gap-1">
                     <p className="font-bold text-[16px] text-title w-full max-[800px]:text-[14px] -mt-1" dangerouslySetInnerHTML={{ __html: highlightedTitle }}></p>
