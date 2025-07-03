@@ -70,7 +70,7 @@ export default function Login() {
           </Link>
         </div>
         <div className="w-full mt-5">
-          <p className="w-full text-right font-bold text-[22px] text-black mb-1">
+          <p className="w-full text-right font-bold text-[22px] text-dark-500 mb-1">
             ورود یا ثبت نام
           </p>
           <p className="w-full text-right text-gray-600">
@@ -91,7 +91,7 @@ export default function Login() {
           عضویت شما به منزله پذیرفتن قوانین و مقررات میباشد.
         </p>
       </div>
-      <div className={`btn-dark w-full mt-7 cursor-pointer !h-[50px] ${isLoading ? "loading" : ""}`} onClick={loginSubmit}>
+      <div className={`btn-dark text-[15.5px] w-full mt-7 cursor-pointer !h-[50px] ${isLoading ? "loading" : ""}`} onClick={loginSubmit}>
         {isLoading ? <Loading /> : "ادامه"}
       </div>
     </>

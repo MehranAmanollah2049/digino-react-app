@@ -154,7 +154,7 @@ export default function Verify() {
                     </Link>
                 </div>
                 <div className="w-full mt-5">
-                    <p className="w-full text-right font-bold text-[22px] text-black mb-1">
+                    <p className="w-full text-right font-bold text-[22px] text-dark-500 mb-1">
                         تایید شماره موبایل
                     </p>
                     <p className="w-full text-right text-gray-600">
@@ -206,11 +206,7 @@ export default function Verify() {
                     ""
                 )}
             </div>
-            <div
-                className={`btn-dark w-full mt-7 cursor-pointer !h-[50px] ${isLoading ? "loading" : ""
-                    }`}
-                onClick={verify}
-            >
+            <div className={`btn-dark text-[15.5px] w-full mt-7 cursor-pointer !h-[50px] ${isLoading ? "loading" : ""}`} onClick={verify}>
                 {isLoading ? <Loading /> : "تایید"}
             </div>
         </>

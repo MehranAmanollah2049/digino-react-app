@@ -22,3 +22,8 @@
   font-family: "yekan_fat";
   src: url(./../font/yekanBakh/Yekan-Bakh-FaNum-08-Fat.woff);
 }
+
+@font-face {
+  font-family: 'morabba_regular';
+  src: url(./../font/Morabba-Regular.woff);
+}

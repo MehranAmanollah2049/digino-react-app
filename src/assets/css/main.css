@@ -8,7 +8,11 @@ body {
 /* roots */
 :root {
   --theme: #ed1944;
-  --width: 1100px;
+  --red: #ed1944;
+  --red-100: #ed194315;
+  --dark-200: #334155;
+  --dark-500: #171e29;
+  --width: 1280px;
 }
 
 /* config */
@@ -18,8 +22,15 @@ body {
   --font-bold: "yekan_bold";
   --font-heavy: "yekan_heavy";
   --font-fat: "yekan_fat";
+  --font-morabba-regular: "morabba_regular";
 
   --color-theme: var(--theme);
+  --color-dark-200: var(--dark-200);
+  --color-dark-500: var(--dark-500);
+  --color-red: var(--red);
+  --color-red-100: var(--red-100);
+
+  --shadow-custom: 0px 4px 60px rgba(0, 0, 0, 0.089);
 }
 
 @layer base {
@@ -30,7 +41,7 @@ body {
 
 @layer components {
   .btn-dark {
-    @apply rounded-md relative px-5 flex items-center justify-center text-[15.5px] text-white font-medium bg-black h-[45px];
+    @apply rounded-md relative px-4 flex items-center justify-center text-[14px] text-white font-medium bg-dark-500 h-[43px];
   }
 
   .btn-dark.loading {
@@ -41,6 +52,15 @@ body {
 @layer utilities {
   .w-custom {
     width: var(--width);
+  }
+
+  .overflow-y-custom {
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+
+  .overflow-y-custom::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -59,6 +79,31 @@ body {
   border-top-color: var(--theme) !important;
   border-left-color: var(--theme) !important;
 }
+
+/* swiper */
+.pagination-handler {
+    gap: 1px;
+}
+
+.pagination-handler span {
+    background-color: #000000d8 !important;
+    border-radius: 80px !important;
+    width: 7px !important;
+    height: 7px !important;
+    transition: var(--transition) !important;
+    cursor: pointer;
+}
+
+.pagination-handler span.swiper-pagination-bullet-active {
+    background-color: white !important;
+    width: 16px !important;
+}
+
+
+.slider-overflow-visible .swiper {
+    overflow: visible !important;
+}
+
 
 @media(max-width: 1170px) {
   :root {
