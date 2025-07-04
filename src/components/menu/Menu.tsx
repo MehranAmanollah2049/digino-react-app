@@ -53,7 +53,7 @@ export default function Menu() {
             <Logo />
             <SearchItem />
           </div>
-          <div className="w-6/17 hidden min-[800px]:flex min-[1000px]:w-7/17 h-full flex items-center justify-end gap-5 pb-1">
+          <div className="w-6/17 hidden min-[800px]:flex min-[1000px]:w-7/17 h-full flex items-center justify-end gap-5">
 
             <div onClick={cart_redirect}
               data-count={!loading && isLoggedIn() ? user?.cart : 0}
