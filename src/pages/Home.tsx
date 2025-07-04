@@ -55,6 +55,8 @@ export default function Home() {
                     <div className="pagination-handler header-pagination h-[23px] px-4 absolute bottom-2 z-3 flex items-center justify-center"></div>
                 </div>
             </div >
+
+            <div className="w-full h-[2000px]"></div>
         </>
     )
 }

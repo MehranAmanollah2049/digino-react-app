@@ -8,6 +8,7 @@ body {
 /* roots */
 :root {
   --theme: #ed1944;
+  --theme-100: #ed194318;
   --red: #ed1944;
   --red-100: #ed194315;
   --dark-200: #334155;
@@ -25,6 +26,7 @@ body {
   --font-morabba-regular: "morabba_regular";
 
   --color-theme: var(--theme);
+  --color-theme-100: var(--theme-100);
   --color-dark-200: var(--dark-200);
   --color-dark-500: var(--dark-500);
   --color-red: var(--red);
@@ -56,10 +58,17 @@ body {
 
   .overflow-y-custom {
     overflow-y: auto;
+  }
+
+  .overflow-x-custom {
+    overflow-x: auto;
+  }
+
+  .overflow-y-custom , .overflow-x-custom {
     scrollbar-width: none;
   }
 
-  .overflow-y-custom::-webkit-scrollbar {
+  .overflow-y-custom::-webkit-scrollbar , .overflow-x-custom::-webkit-scrollbar {
     display: none;
   }
 }
@@ -78,6 +87,11 @@ body {
 #nprogress .spinner-icon {
   border-top-color: var(--theme) !important;
   border-left-color: var(--theme) !important;
+}
+
+/* toaster */
+#_rht_toaster {
+  z-index: 10000 !important;
 }
 
 /* swiper */
@@ -105,8 +119,8 @@ body {
 }
 
 
-@media(max-width: 1170px) {
+@media(max-width: 1330px) {
   :root {
-    --width: 90%;
+    --width: 95%;
   }
 }

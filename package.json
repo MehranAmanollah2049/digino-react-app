@@ -12,10 +12,12 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.11",
     "axios": "^1.10.0",
+    "motion": "^12.23.0",
     "nprogress": "^0.2.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hot-toast": "^2.5.2",
+    "react-modal-sheet": "^4.4.0",
     "react-router": "^7.6.3",
     "swiper": "^11.2.10",
     "tailwindcss": "^4.1.11",
@@ -23,6 +25,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
+    "@types/node": "^24.0.10",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^4.5.2",

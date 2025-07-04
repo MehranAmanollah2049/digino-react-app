@@ -10,12 +10,32 @@ import LinkItem from "./LinkItem";
 import DrpItem from "./DrpItem";
 import DropDown from "./DropDown";
 import { useCategorys } from "../../context/CategoryProvider";
+import { useEffect, useRef, useState } from "react";
 
 export default function Menu() {
 
   const { user, loading, logout_loading, isLoggedIn } = useUser();
-
   const { categorys, brands, isCategorysLoading } = useCategorys();
+
+  const [isSubMenuActive, setIsSubMenuActive] = useState<boolean>(true)
+  const lastScrollY = useRef<number>(0)
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY
+
+    if (currentScrollY > lastScrollY.current) {
+      setIsSubMenuActive(false)
+    } else if (currentScrollY < lastScrollY.current) {
+      setIsSubMenuActive(true)
+    }
+    lastScrollY.current = currentScrollY
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const cart_redirect = (): undefined => {
     if (!isLoggedIn()) {
@@ -27,13 +47,13 @@ export default function Menu() {
   return (
     <>
       <BannerTitle />
-      <nav className="w-full flex items-center justify-center flex-col bg-white border-b border-gray-200 sticky top-0 z-500">
-        <div className="w-custom h-[70px] flex items-center justify-between">
-          <div className="w-8/17 h-full flex items-center justify-start gap-3">
+      <nav className="w-full flex items-center justify-center flex-col bg-white border-b border-gray-200 min-[800px]:border-transparent sticky top-0 z-45">
+        <div className="w-custom h-[62px] min-[800px]:h-[70px] flex items-center justify-between bg-white relative z-2">
+          <div className="w-full min-[800px]:w-10/17 min-[1000px]:w-8/17 h-full flex items-center justify-start min-[800px]:gap-2">
             <Logo />
             <SearchItem />
           </div>
-          <div className="w-7/17 h-full flex items-center justify-end gap-5 pb-1">
+          <div className="w-6/17 hidden min-[800px]:flex min-[1000px]:w-7/17 h-full flex items-center justify-end gap-5 pb-1">
 
             <div onClick={cart_redirect}
               data-count={!loading && isLoggedIn() ? user?.cart : 0}
@@ -61,6 +81,8 @@ export default function Menu() {
             )}
           </div>
         </div>
+      </nav>
+      <nav className={`w-full hidden min-[800px]:flex sticky top-[65px] z-44 bg-white flex items-center justify-center border-b border-gray-200 transition-all ${isSubMenuActive ? '-translate-y-0' : '-translate-y-[40px]'}`}>
         <div className="w-custom h-[50px] flex items-center justify-start gap-5">
 
           <DrpItem

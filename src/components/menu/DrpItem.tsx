@@ -21,7 +21,7 @@ export default function DrpItem({ title , children , icon }: Props) {
 
             {children}
 
-            <div className="w-full h-[1.5px] absolute bottom-0 bg-red rounded-t-full opacity-0 transition-all group-hover/btn:opacity-100"></div>
+            <div className="w-full h-[2px] absolute bottom-0 bg-red rounded-t-full opacity-0 transition-all group-hover/btn:opacity-100"></div>
         </div>
     )
 }
