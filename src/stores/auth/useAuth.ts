@@ -4,14 +4,18 @@ type Phone = string | null;
 
 interface AuthStore {
     phoneNumber: Phone,
+    registerAccess: boolean,
+    setRegisterAcces: () => void,
     setPhoneNumber: (phoneNumber: Phone) => void,
-    removePhoneNumber: () => void
+    resetAuthData: () => void
 }
 
 const useAuth = create<AuthStore>((set) => ({
     phoneNumber: null,
+    registerAccess: false,
+    setRegisterAcces: () => set({ registerAccess: true }),
     setPhoneNumber: (phoneNumber) => set({ phoneNumber }),
-    removePhoneNumber: () => set({ phoneNumber: null })
+    resetAuthData: () => set({ phoneNumber: null , registerAccess: false })
 }))
 
 export default useAuth;

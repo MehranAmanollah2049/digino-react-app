@@ -39,7 +39,7 @@ export default function BaseInput({ error, rtl = true, title, onlyNumber = false
 
         {error ? (
           <svg
-            className="size-5 absolute right-3 fill-red-600"
+            className={`size-5 absolute ${onlyNumber ? 'right-3' : 'left-3'} fill-red-600`}
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
             version="1.1"

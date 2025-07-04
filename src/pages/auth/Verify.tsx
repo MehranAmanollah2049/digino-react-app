@@ -16,9 +16,9 @@ export default function Verify() {
 
     const { data: code, setData: setCode, error: errorCode, isValid: isValidCode, setError: setCodeError } = useField((value) => {
         return value.join("").length != 4 ? "کد وارد شده صحیح نمی باشد" : null;
-    },["", "", "", ""]);
+    }, ["", "", "", ""]);
 
-    const { phoneNumber, removePhoneNumber } = useAuth();
+    const { phoneNumber, resetAuthData , setRegisterAcces } = useAuth();
     const { setToken } = useToken()
     const { set_user } = useUser()
     const navigate = useNavigate();
@@ -46,15 +46,23 @@ export default function Verify() {
 
                     if (res) {
 
-                        setToken(res.data.token)
-                        set_user(res.data.user)
+                        if ('token' in res.data) {
+                            setToken(res.data.token)
+                            set_user(res.data.user)
 
-                        toast.success(`خوش آمدید`)
-                        navigate(prevUrl)
+                            toast.success(`خوش آمدید`)
+                            navigate(prevUrl)
 
-                        setTimeout(() => {
-                            removePhoneNumber()
-                        }, 1000);
+                            setTimeout(() => {
+                                resetAuthData()
+                            }, 1000);
+                        }
+                        else {
+                            setRegisterAcces()
+                            toast.success('شماره موبایل شما با موفقیت تایید شد');
+                            navigate("/auth/register")
+                        }
+
                     }
                 })
                 .catch(() => {

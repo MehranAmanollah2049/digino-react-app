@@ -1,17 +1,21 @@
 import { createBrowserRouter } from "react-router";
 import App from "../App";
 import { lazy } from "react";
-import GuestMiddleware from "../middlewares/GuestMiddleware";
-import VeriftAccessMiddleware from "../middlewares/VeriftAccessMiddleware";
 
 // layouts
 const DefaultLayout = lazy(() => import('../layouts/DefaultLayout'));
 const AuthLayout = lazy(() => import('../layouts/AuthLayout'));
 
+// middlewares
+import GuestMiddleware from "../middlewares/GuestMiddleware";
+import VerifyAccessMiddleware from "../middlewares/VerifyAccessMiddleware";
+import RegisterAccessMiddleware from "../middlewares/RegisterAccessMiddleware";
+
 // pages
 const HomePage = lazy(() => import('../pages/Home'));
 const LoginPage = lazy(() => import('../pages/auth/Login'));
 const VerifyPage = lazy(() => import('../pages/auth/Verify'));
+const RegisterPage = lazy(() => import('../pages/auth/Register'));
 
 const router = createBrowserRouter([
     {
@@ -34,7 +38,8 @@ const router = createBrowserRouter([
                 loader: GuestMiddleware,
                 children: [
                     { index: true , Component: LoginPage },
-                    { path: 'verify' , Component: VerifyPage , loader: VeriftAccessMiddleware },
+                    { path: 'verify' , Component: VerifyPage , loader: VerifyAccessMiddleware },
+                    { path: 'register' , Component: RegisterPage , loader: RegisterAccessMiddleware },
                 ]
             }
 

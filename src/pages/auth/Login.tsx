@@ -17,7 +17,7 @@ export default function Login() {
     return !/^[0-9]{11}$/.test(value) ? "شماره موبایل معتبر نمی باشد" : null;
   }, phoneNumber || '');
 
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState<boolean>(false);
 
   const loginSubmit = () => {
     // validation
@@ -88,7 +88,7 @@ export default function Login() {
           />
         </div>
         <p className="mt-3 text-[14px] text-gray-500">
-          عضویت شما به منزله پذیرفتن قوانین و مقررات میباشد.
+          کد تایید به شماره ای که وارد میکنید ارسال می شود
         </p>
       </div>
       <div className={`btn-dark text-[15.5px] w-full mt-7 cursor-pointer !h-[50px] ${isLoading ? "loading" : ""}`} onClick={loginSubmit}>
