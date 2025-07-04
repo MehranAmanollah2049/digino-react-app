@@ -9,6 +9,7 @@ body {
 :root {
   --theme: #ed1944;
   --theme-100: #ed194318;
+  --theme-200: #ed194344;
   --red: #ed1944;
   --red-100: #ed194315;
   --dark-200: #334155;
@@ -24,15 +25,18 @@ body {
   --font-heavy: "yekan_heavy";
   --font-fat: "yekan_fat";
   --font-morabba-regular: "morabba_regular";
+  --font-morabba-bold: "morabba_bold";
 
   --color-theme: var(--theme);
   --color-theme-100: var(--theme-100);
+  --color-theme-200: var(--theme-200);
   --color-dark-200: var(--dark-200);
   --color-dark-500: var(--dark-500);
   --color-red: var(--red);
   --color-red-100: var(--red-100);
 
   --shadow-custom: 0px 4px 60px rgba(0, 0, 0, 0.089);
+  --shadow-theme-100: 0px 4px 60px var(--theme-100);
 }
 
 @layer base {

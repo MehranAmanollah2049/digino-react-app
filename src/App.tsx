@@ -1,4 +1,4 @@
-import { Outlet } from "react-router";
+import { Outlet, useLocation, useNavigation } from "react-router";
 import PrevUrlProvider from "./context/PrevUrlProvider";
 import useUser from "./stores/auth/useUser";
 import { useEffect } from "react";

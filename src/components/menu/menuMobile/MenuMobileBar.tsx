@@ -8,8 +8,8 @@ export default function MenuMobileBar() {
     const { isLoggedIn, loading } = useUser();
 
     return (
-        <div className="w-full min-[800px]:hidden h-[75px] fixed bottom-0 z-40 flex items-center justify-center border-t border-gray-200">
-            <Link to="/" className={`w-1/4 h-full flex items-center justify-center flex-col gap-2 pt-1 group ${location.pathname == '/' ? 'active' : ''}`}>
+        <div className="w-full bg-white min-[800px]:hidden h-[75px] fixed bottom-0 z-40 flex items-center justify-center border-t border-gray-200">
+            <Link to="/" className={`w-1/4 h-full flex items-center justify-center flex-col gap-2 pt-1 group ${location.pathname == '/' && 'active'}`}>
                 <svg xmlns="http://www.w3.org/2000/svg"
                     className="size-[20px] fill-gray-500 transition-all group-[.active]:fill-theme" viewBox="0 0 24 24"
                     width="512" height="512">
@@ -19,7 +19,7 @@ export default function MenuMobileBar() {
                 <span className="text-gray-500 font-medium text-[15px] transition-all group-[.active]:text-theme">خانه</span>
             </Link>
             <MenuDrawer />
-            <Link to="/cart" className={`w-1/4 h-full flex items-center justify-center flex-col gap-2 pt-1 group ${location.pathname.startsWith('/cart') ? 'active' : ''}`}>
+            <Link to="/cart" className={`w-1/4 h-full flex items-center justify-center flex-col gap-2 pt-1 group ${location.pathname.startsWith('/cart') && 'active'}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" className="size-[21px] fill-gray-500 transition-all group-[.active]:fill-theme" viewBox="0 0 24 24" width="512"
                     height="512">
                     <path

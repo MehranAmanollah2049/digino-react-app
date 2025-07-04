@@ -27,3 +27,8 @@
   font-family: 'morabba_regular';
   src: url(./../font/Morabba-Regular.woff);
 }
+
+@font-face {
+  font-family: 'morabba_bold';
+  src: url(./../font/Morabba-Bold.woff);
+}

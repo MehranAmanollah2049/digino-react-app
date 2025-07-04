@@ -38,8 +38,8 @@ export default function SearchResult({ product, search }: Props) {
                         strokeLinejoin="round"></path>
                 </svg>
                 <div className="w-[calc(100%-30px)] flex items-start justify-center flex-col gap-1">
-                    <p className="font-bold text-[16px] text-title w-full max-[800px]:text-[14px] -mt-1" dangerouslySetInnerHTML={{ __html: highlightedTitle }}></p>
-                    <p className="text-gray-500 text-[14px] font-medium max-[800px]:text-[13px]">در دسته <span className="text-theme font-medium">{product.category}</span></p>
+                    <p className="font-bold text-[14px] text-title w-full min-[800px]:text-[16px] -mt-1" dangerouslySetInnerHTML={{ __html: highlightedTitle }}></p>
+                    <p className="text-gray-500 text-[13px] font-medium min-[800px]:text-[13px]">در دسته <span className="text-theme font-medium">{product.category}</span></p>
                 </div>
             </div>
 

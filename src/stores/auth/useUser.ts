@@ -18,7 +18,7 @@ interface UserStore {
     isLoggedIn: () => boolean,
     fetchUser: () => Promise<void>,
     logOut: () => Promise<void>,
-    set_user: (user: User) => void
+    set_user: (user: User) => void,
 }
 
 const useUser = create<UserStore>((set, get) => {
@@ -67,6 +67,8 @@ const useUser = create<UserStore>((set, get) => {
 
     const set_user = (user: User) => set({ user })
 
+    const getUser = () => get().user
+
     return {
         user: null,
         loading: true,
@@ -74,7 +76,7 @@ const useUser = create<UserStore>((set, get) => {
         isLoggedIn,
         fetchUser,
         logOut,
-        set_user
+        set_user,
     }
 });
 

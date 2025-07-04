@@ -19,7 +19,7 @@ export default function Profile() {
 
     return (
         <>
-            <div className={`flex items-center justify-center h-[43px] cursor-pointer relative ${isActive ? 'z-104' : ''}`} onClick={() => setIsActive(prev => !prev)}>
+            <div className={`flex items-center justify-center h-[43px] cursor-pointer relative ${isActive && 'z-104'}`} onClick={() => setIsActive(prev => !prev)}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="size-[26px] text-gray-800"><g stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.75" clipPath="url(#account_svg__a)"><path d="M12 13.8c3.06 0 5.54-2.42 5.54-5.4C17.54 5.42 15.06 3 12 3S6.46 5.42 6.46 8.4c0 2.98 2.48 5.4 5.54 5.4ZM6 21c2.69-4.42 9.24-4.44 11.97-.05L18 21"></path></g><defs><clipPath id="account_svg__a"><path fill="#fff" d="M0 0h24v24H0z"></path></clipPath></defs></svg>
                 <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 20 20" aria-hidden="true" className="text-secondary-700 size-4 transform-[translateY(0.5px)]" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
 

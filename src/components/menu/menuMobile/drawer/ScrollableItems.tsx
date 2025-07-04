@@ -30,7 +30,7 @@ export default function ScrollableItems({ title, list, keyItem , children , load
                             <div className="w-auto flex items-center justify-start gap-2">
                                 {
                                     list.map(item => (
-                                        <Link onClick={onSheetClose} to={`/products?${keyItem}=${item.id}`} className="h-[28px] whitespace-nowrap border border-gray-200 rounded-full flex items-center justify-center text-[14px] text-gray-500 px-2 hover:text-theme transition-all">{item.title}</Link>
+                                        <Link key={item.id} onClick={onSheetClose} to={`/products?${keyItem}=${item.id}`} className="h-[28px] whitespace-nowrap border border-gray-200 rounded-full flex items-center justify-center text-[14px] text-gray-500 px-2 hover:text-theme transition-all">{item.title}</Link>
                                     ))
                                 }
                             </div>
