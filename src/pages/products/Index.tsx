@@ -165,14 +165,14 @@ export default function Index() {
         <>
             <div className="w-full flex items-center justify-center pt-10 pb-5 min-[900px]:pt-23 min-[900px]:pb-20">
                 <div className="w-custom flex items-start justify-between">
-                    <div className="w-10/35 hidden min-[900px]:block min-[1010px]:w-9/35 min-[1190px]:w-8/35 rounded-lg p-4 border border-gray-100">
+                    <div className="w-10/35 hidden min-[900px]:block min-[1010px]:w-9/35 min-[1190px]:w-8/35 p-4 border border-gray-100">
                         <div className="w-full flex items-center justify-between">
                             <p className="text-[20px] font-bold text-dark-500">فیلتر ها</p>
                             {
                                 is_filters_in_use && <div onClick={clearFilter} className="text-[15px] text-theme font-medium cursor-pointer">پاک کردن فیلتر ها</div>
                             }
                         </div>
-                        <div className="w-full center flex-col pt-5">
+                        <div className="w-full center flex-col pt-3">
                             <FilterSectionTop defaultOpen={true} MAX_PICE={MAX_PICE} ProductLoading={ProductLoading} Filters={Filters} setFilters={setFilters} borderB={true} />
                             <FilterSectionOrder defaultOpen={true} ProductLoading={ProductLoading} Filters={Filters} setFilters={setFilters} />
                         </div>
