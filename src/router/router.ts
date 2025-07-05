@@ -16,6 +16,7 @@ const HomePage = lazy(() => import('../pages/Home'));
 const LoginPage = lazy(() => import('../pages/auth/Login'));
 const VerifyPage = lazy(() => import('../pages/auth/Verify'));
 const RegisterPage = lazy(() => import('../pages/auth/Register'));
+const AllProductsPage = lazy(() => import('../pages/products/Index'));
 
 const router = createBrowserRouter([
     {
@@ -27,7 +28,8 @@ const router = createBrowserRouter([
                 path: '/',
                 Component: DefaultLayout,
                 children: [
-                    { index: true , Component: HomePage }
+                    { index: true , Component: HomePage },
+                    { path: '/products' , Component: AllProductsPage }
                 ]
             },
 

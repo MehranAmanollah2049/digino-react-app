@@ -88,7 +88,7 @@ export default function SearchBox({ isActive, setIsActive }: Props) {
                         <p className="text-gray-400 text-[15.5px]/8">{search.length > 0 ? total : 0} کالا</p>
                         {
                             search.length > 0 && total > 4 ?
-                                <Link to={`/products?search=${search}`} className="text-red text-[14px] flex items-center justify-center">
+                                <Link to={`/products?search=${search}`} onClick={() => setIsActive(false)} className="text-red text-[14px] flex items-center justify-center">
                                     مشاهده همه
                                     <svg className="size-4 fill-theme transform-[translateY(-1px)]">
                                         <use xlinkHref="#chevronLeft">
@@ -112,7 +112,7 @@ export default function SearchBox({ isActive, setIsActive }: Props) {
                                 </div>
                             ) : search.length <= 0 ? <p className="w-full text-[15px] text-title font-medium">شروع به جستو جو کنید...</p>
                                 : products.length > 0 ? products.map(product => (
-                                    <SearchResult key={product.id} product={product} search={search} />
+                                    <SearchResult key={product.id} product={product} search={search} onClose={() => setIsActive(false)} />
                                 )) : <p className="w-full text-[15px] text-title font-medium">موردی یافت نشد</p>
                         }
                     </div>

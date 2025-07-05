@@ -9,10 +9,11 @@ type Product = {
 
 type Props = {
     product: Product,
-    search: string
+    search: string,
+    onClose: () => void
 }
 
-export default function SearchResult({ product, search }: Props) {
+export default function SearchResult({ product, search, onClose }: Props) {
 
     const highlightedTitle = useMemo(() => {
         const title = product.title;
@@ -27,7 +28,7 @@ export default function SearchResult({ product, search }: Props) {
     }, [product.title, search]);
 
     return (
-        <Link to={`/products/${product.id}`} className="w-full flex items-center justify-between">
+        <Link to={`/products/${product.id}`} onClick={onClose} className="w-full flex items-center justify-between">
 
             <div className="w-[calc(100%-50px)] flex items-start justify-start gap-3">
                 <svg className="size-[17px] text-gray-400 transform-[translateY(-1px)]" viewBox="0 0 16 17" fill="none"

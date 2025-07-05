@@ -1,8 +1,8 @@
 
 
-export default function ProductCardLoading() {
+export default function ProductCardLoading({ customClass }: { customClass?: string }) {
     return (
-        <div className="w-[250px] min-[1300px]:w-full min-[1300px]:w-auto h-[315px] min-[470px]:h-[390px] flex items-start justify-center flex-col gap-3 border-4 border-white px-1">
+        <div className={`${customClass} min-[1300px]:w-full min-[1300px]:w-auto h-[315px] min-[470px]:h-[390px] flex items-start justify-center flex-col gap-3 border-4 border-white px-1`}>
             <div className="w-full h-[145px] rounded-lg bg-gray-200 animate-pulse min-[470px]:h-[220px]"></div>
             <div className="w-full h-[10px] rounded-full bg-gray-200 animate-pulse mt-2"></div>
             <div className="w-[50%] h-[10px] rounded-full bg-gray-200 animate-pulse"></div>

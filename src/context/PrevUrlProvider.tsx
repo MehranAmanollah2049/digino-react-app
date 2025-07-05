@@ -1,31 +1,32 @@
-import { createContext, useContext, useEffect, useRef, useState } from "react"
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router";
 
-const PrevUrlContext = createContext<{ prevUrl: string }>({ prevUrl: '/' });
+type PrevUrlContextType = {
+  prevUrl: string;
+};
+
+const PrevUrlContext = createContext<PrevUrlContextType>({ prevUrl: "/" });
 
 export default function PrevUrlProvider({ children }: { children: React.ReactNode }) {
+  const [prevUrl, setPrevUrl] = useState<string>("/");
+  const location = useLocation();
 
-    const [prevUrl, setPrevUrl] = useState<string>('/');
-    const location = useLocation();
-    const lastPath = useRef<string | null>(null);
+  useEffect(() => {
+    const currentPath = location.pathname;
 
-    useEffect(() => {
-        const currentPath = location.pathname;
+    // Only save if the current path is NOT under /auth
+    if (!currentPath.startsWith("/auth")) {
+      setPrevUrl(currentPath);
+    }
+  }, [location.pathname]); // Watch only pathname
 
-        if (!currentPath.startsWith("/auth") && lastPath.current && !lastPath.current.startsWith("/auth")) {
-            setPrevUrl(lastPath.current);
-        }
-
-        lastPath.current = currentPath;
-    }, [location]);
-
-    return (
-        <PrevUrlContext.Provider value={{ prevUrl }}>
-            {children}
-        </PrevUrlContext.Provider>
-    )
+  return (
+    <PrevUrlContext.Provider value={{ prevUrl }}>
+      {children}
+    </PrevUrlContext.Provider>
+  );
 }
 
 export function usePrevUrl() {
-    return useContext(PrevUrlContext);
+  return useContext(PrevUrlContext);
 }

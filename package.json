@@ -18,6 +18,7 @@
     "react-dom": "^19.1.0",
     "react-hot-toast": "^2.5.2",
     "react-modal-sheet": "^4.4.0",
+    "react-range": "^1.10.0",
     "react-router": "^7.6.3",
     "swiper": "^11.2.10",
     "tailwindcss": "^4.1.11",

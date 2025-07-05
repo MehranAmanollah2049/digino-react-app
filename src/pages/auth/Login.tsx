@@ -7,9 +7,11 @@ import Loading from "../../components/Loading";
 import HttpRequest from './../../api/ApiConfig'
 import toast from "react-hot-toast";
 import useAuth from "../../stores/auth/useAuth";
+import { usePrevUrl } from "../../context/PrevUrlProvider";
 
 export default function Login() {
 
+  const { prevUrl } = usePrevUrl()
   const { phoneNumber, setPhoneNumber } = useAuth();
   const navigate = useNavigate();
 
@@ -54,7 +56,7 @@ export default function Login() {
         <div className="w-full h-[36px] flex items-center justify-between">
           <Logo />
           <Link
-            to="/"
+            to={prevUrl}
             className="rounded-md bg-gray-200 flex items-center justify-center p-2"
           >
             <svg
