@@ -28,13 +28,13 @@ export default function SearchBox({ isActive, setIsActive }: Props) {
 
     useEffect(() => {
         if (debounceTimer.current) clearTimeout(debounceTimer.current);
-        
-        debounceTimer.current= setTimeout(() => {
+
+        debounceTimer.current = setTimeout(() => {
             if (search.trim() === "") {
                 removeResults()
                 return;
             }
-            
+
             setIsLoading(true)
 
             HttpRequest.get(`/search?search=${search}`)
@@ -85,25 +85,17 @@ export default function SearchBox({ isActive, setIsActive }: Props) {
                         </div>
                     </div>
                     <div className="w-full flex items-center justify-between mt-4">
-                        <p className="text-gray-400 text-[15.5px]/8">{search.length > 0 ? total : 0} کالا</p>
+                        <p className="text-gray-400 text-[15.5px] -mb-1">{search.length > 0 ? total : 0} کالا</p>
                         {
                             search.length > 0 && total > 4 ?
                                 <Link to={`/products?search=${search}`} onClick={() => setIsActive(false)} className="text-red text-[14px] flex items-center justify-center">
                                     مشاهده همه
-                                    <svg className="size-4 fill-theme transform-[translateY(-1px)]">
-                                        <use xlinkHref="#chevronLeft">
-                                            <symbol id="chevronLeft" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                                <path
-                                                    d="M11.414 12l4.293 4.293-1.414 1.414-5-5a1 1 0 010-1.414l5-5 1.414 1.414L11.414 12z">
-                                                </path>
-                                            </symbol>
-                                        </use>
-                                    </svg>
+                                    <svg  className="size-3 fill-theme" xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512"><path d="M10.6,12.71a1,1,0,0,1,0-1.42l4.59-4.58a1,1,0,0,0,0-1.42,1,1,0,0,0-1.41,0L9.19,9.88a3,3,0,0,0,0,4.24l4.59,4.59a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.42Z"/></svg>
                                 </Link> : ''
                         }
 
                     </div>
-                    <div className="w-full flex items-start justify-center flex-col gap-6 mt-4">
+                    <div className="w-full flex items-start justify-center flex-col gap-6 mt-5">
                         {
                             isLoading ? (
                                 <div className="w-full flex items-center justify-start gap-3">

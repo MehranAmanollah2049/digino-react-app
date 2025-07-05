@@ -44,13 +44,7 @@ export default function SearchResult({ product, search, onClose }: Props) {
                 </div>
             </div>
 
-            <svg className="size-5 fill-gray-400">
-                <use xlinkHref="#searchPlaceSuggest">
-                    <symbol id="searchPlaceSuggest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M17 8.414L6.707 18.707l-1.414-1.414L15.586 7H9V5h9a1 1 0 011 1v9h-2V8.414z"></path>
-                    </symbol>
-                </use>
-            </svg>
+            <svg className="size-5 fill-gray-400" xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512"><path d="M10.6,12.71a1,1,0,0,1,0-1.42l4.59-4.58a1,1,0,0,0,0-1.42,1,1,0,0,0-1.41,0L9.19,9.88a3,3,0,0,0,0,4.24l4.59,4.59a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.42Z"/></svg>
         </Link>
     )
 }

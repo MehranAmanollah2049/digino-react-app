@@ -25,14 +25,7 @@ export default function DropDown({ keyItem, list, loading = false }: Props) {
                         list.map(item => (
                             <Link key={item.id} to={`/products?${keyItem}=${item.id}`} className="w-full group/item text-gray-500 text-[15px] py-2 px-3 hover:bg-gray-100/80 hover:text-theme flex items-center justify-between transition-custom whitespace-nowrap gap-2">
                                 {item.title}
-                                <svg className="size-4 fill-gray-400 transition-custom group-hover/item:fill-theme">
-                                    <use xlinkHref="#chevronLeft">
-                                        <symbol id="chevronLeft" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                            <path d="M11.414 12l4.293 4.293-1.414 1.414-5-5a1 1 0 010-1.414l5-5 1.414 1.414L11.414 12z">
-                                            </path>
-                                        </symbol>
-                                    </use>
-                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg"  className="size-4 fill-gray-400 transition-custom group-hover/item:fill-theme" id="Outline" viewBox="0 0 24 24" width="512" height="512"><path d="M10.6,12.71a1,1,0,0,1,0-1.42l4.59-4.58a1,1,0,0,0,0-1.42,1,1,0,0,0-1.41,0L9.19,9.88a3,3,0,0,0,0,4.24l4.59,4.59a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.42Z"/></svg>
                             </Link>
                         ))
                     )
