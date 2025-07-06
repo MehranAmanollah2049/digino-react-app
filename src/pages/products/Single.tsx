@@ -69,7 +69,9 @@ export default function Single() {
         types: [],
     });
     const [TypeIndex, setTypeIndex] = useState<number>(0);
-    const [CartLoading, setCartLoading] = useState<boolean>(false)
+    const [isTypeSet, setIsTypeSet] = useState<boolean>(false);
+
+    const [CartLoading, setCartLoading] = useState<boolean>(false);
 
     // actions
     const fetch_data = async (): Promise<void> => {
@@ -226,7 +228,7 @@ export default function Single() {
     const [swiperInstance, setSwiperInstance] = useState<any>(null);
 
     const goToIndex = (index: number): void => {
-        if(swiperInstance) {
+        if (swiperInstance) {
             swiperInstance.slideTo(index)
         }
     }
@@ -236,21 +238,26 @@ export default function Single() {
         fetch_data()
     }, []);
 
-    useEffect(() => {
+    
 
+    useEffect(() => {
+    if (!isTypeSet && Product.types.length > 0 && swiperInstance) {
         const type = searchParams.get("type");
         if (type) {
             const index = Product.types.findIndex(item => item.id === parseInt(type));
             if (index !== -1) {
-                setTypeIndex(index)
-                goToIndex(index)
-            };
+                setTypeIndex(index);
+                goToIndex(index);
+            }
         }
-    }, [Product, searchParams])
+        setIsTypeSet(true);
+    }
+}, [Product, searchParams, swiperInstance, isTypeSet]);
+
 
     // propertys
-    const currentType = useMemo(() => Product.types[TypeIndex], [Product.types, TypeIndex]);
-    const Images = useMemo(() => Product.types.map(type => ({ id: type.id, image: type.image })), [Product.types])
+    const currentType = Product.types[TypeIndex];
+    const Images = Product.types.map(type => ({ id: type.id, image: type.image }))
 
 
 
@@ -416,7 +423,7 @@ export default function Single() {
                     </div>
 
                     {/* price + cart */}
-                    <div className="w-full flex items-center justify-between pt-3">
+                    <div className="w-full flex items-center justify-between pt-1">
                         {/* cart */}
                         {
                             !IsProductLoading && !user_loading ? (
