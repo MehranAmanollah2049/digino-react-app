@@ -449,7 +449,7 @@ export default function Single() {
                             {
                                 !IsProductLoading ? (
                                     <>
-                                        {currentType.discount && (
+                                        {currentType.discount ? (
                                             <div className="flex items-center justify-center gap-[7px] -mb-[3px]">
                                                 <p
                                                     className="text-[15.5px] text-gray-400/80 font-medium line-through transform-[translateY(0.5px)]">
@@ -459,7 +459,7 @@ export default function Single() {
                                                     <span className="font-bold -mb-[1.2px]">%</span> {currentType.discount}
                                                 </div>
                                             </div>
-                                        )}
+                                        ) : ''}
                                         <div className="flex items-center justify-center gap-1 text-title font-bold text-[23px]">
                                             {currentType.payment}
                                             <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 2" viewBox="0 0 51.29 27.19"
