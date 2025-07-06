@@ -59,7 +59,7 @@ body {
   }
 
   .btn-title {
-    @apply h-[40px] rounded-md border border-dark-200 flex items-center justify-center px-6 shadow-sm text-dark-200 hover:bg-dark-200 hover:text-white font-medium text-[15px] cursor-pointer
+    @apply h-[40px] rounded-md border border-dark-500 flex items-center justify-center px-6 shadow-sm text-dark-500 hover:bg-dark-500 hover:text-white font-medium text-[15px] cursor-pointer
   }
 
   .btn-dark.loading {

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react"
 import HttpRequest, { BaseUrl } from "../../api/ApiConfig";
-import { Link, useLocation, useParams, useSearchParams } from "react-router";
+import { Link, useParams, useSearchParams } from "react-router";
 import Nprogress from 'nprogress'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
@@ -14,6 +14,7 @@ import CartCounter from "../../components/single-product/CartCounter";
 import toast from "react-hot-toast";
 import SpinnerLoading from "../../components/SpinnerLoading";
 import StarRating from "../../components/single-product/StarRating";
+import CommentSection from "../../components/single-product/comments/CommentSection";
 
 interface ProductType {
     id: number,
@@ -422,7 +423,7 @@ export default function Single() {
                                 isLoggedIn() && currentType.cart_user ? (
                                     <CartCounter next={next_handler} prev={prev_handler} count={currentType.cart_user.count} total={currentType.count} loading={CartLoading} />
                                 ) : (
-                                    <div className={`btn-dark !h-[43px] gap-2 px-5 pb-[2px] ${CartLoading && 'pointer-events-none loading'}`} onClick={add_to_cart}>
+                                    <div className={`btn-title  transition-colors !h-[43px] gap-2 px-5 pb-[2px] ${CartLoading && 'pointer-events-none loading'}`} onClick={add_to_cart}>
                                         {
                                             !CartLoading ? (
                                                 <>
@@ -474,6 +475,9 @@ export default function Single() {
 
                     {/* rating */}
                     <StarRating model={Product.rate} setModel={(rate: RateType) => setProduct(prev => ({ ...prev, rate }))} loading={IsProductLoading} />
+
+                    {/* comments */}
+                    <CommentSection />
                 </div>
             </div>
         </div>

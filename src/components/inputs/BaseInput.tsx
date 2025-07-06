@@ -6,10 +6,11 @@ type Props = {
   title: string,
   onlyNumber?: boolean,
   state: string,
-  setState: React.Dispatch<React.SetStateAction<string>>
+  setState: React.Dispatch<React.SetStateAction<string>>,
+  isTextArea?: boolean
 }
 
-export default function BaseInput({ error, rtl = true, title, onlyNumber = false, state, setState}: Props) {
+export default function BaseInput({ error, rtl = true, title, onlyNumber = false, state, setState, isTextArea = false }: Props) {
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     if (onlyNumber) {
@@ -21,25 +22,36 @@ export default function BaseInput({ error, rtl = true, title, onlyNumber = false
   return (
     <div className="w-full flex items-start justify-center flex-col gap-1">
       <div
-        className={`w-full h-[48px] text-[17px] rounded-md flex items-center justify-center relative border ${
-          error ? "border-red-300" : "border-gray-300"
-        }`}
-      >
-        <input
-          type="text"
-          className={`w-full h-full outline-none border-none px-3 pt-[1px] ${
-            !rtl ? "text-left" : ""
+        className={`w-full ${!isTextArea ? 'h-[48px]' : 'h-[130px]'} text-[17px] rounded-md flex items-center justify-center relative border ${error ? "border-red-300" : "border-gray-300"
           }`}
-          placeholder={title}
-          inputMode={onlyNumber ? "numeric" : "text"}
-          value={state}
-          onChange={(e) => setState(e.target.value)}
-          onInput={handleInput}
-        />
+      >
+        {
+          !isTextArea ? (
+            <input
+              type="text"
+              className={`w-full h-full outline-none border-none px-3 pt-[1px] ${!rtl ? "text-left" : ""}`}
+              placeholder={title}
+              inputMode={onlyNumber ? "numeric" : "text"}
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+              onInput={handleInput}
+            />
+          ) : (
+            <textarea
+              className={`w-full h-full outline-none border-none px-3 pt-3 resize-none ${!rtl ? "text-left" : ""}`}
+              placeholder={title}
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+              >
+                {state}
+              </textarea>
+          )
+        }
+
 
         {error ? (
           <svg
-            className={`size-5 absolute ${onlyNumber ? 'right-3' : 'left-3'} fill-red-600`}
+            className={`size-5 absolute ${onlyNumber ? 'right-3' : 'left-3'} ${isTextArea && 'top-4'} fill-red-600`}
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
             version="1.1"

@@ -80,7 +80,7 @@ export default function MenuDrawer() {
                     </Sheet.Content>
                 </Sheet.Container>
                 <Sheet.Backdrop onTap={() => setOpen(false)} />
-            </Sheet >
+            </Sheet>
         </>
     )
 }
