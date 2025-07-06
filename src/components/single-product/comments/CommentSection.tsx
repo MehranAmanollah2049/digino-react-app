@@ -35,7 +35,7 @@ export interface FormConfigType {
     active: boolean,
     loading: boolean,
     score_status: boolean,
-    event: (text: string, setText: React.Dispatch<React.SetStateAction<string>>, score?: string, setScore?: React.Dispatch<React.SetStateAction<string>>) => any
+    event: (text: string, setText: React.Dispatch<React.SetStateAction<string>>, isValidText: () => boolean, setTextError: () => void, score?: string, setScore?: React.Dispatch<React.SetStateAction<string>>) => any
 }
 
 export default function CommentSection() {
@@ -94,7 +94,7 @@ export default function CommentSection() {
             title: 'فرم ثبت دیدگاه',
             score_status: true,
             active: true,
-            event: (text, setText, score, setScore) => add_comment(Number(params.id), FormConfig, setFormConfig, text, setText, score!, setScore!)
+            event: (text, setText, isValidText, setTextError, score, setScore) => add_comment(Number(params.id), FormConfig, setFormConfig, text, setText, score!, setScore!, isValidText, setTextError)
         }))
     }
 
@@ -109,7 +109,7 @@ export default function CommentSection() {
             title: `پاسخ به ${name}`,
             score_status: false,
             active: true,
-            event: (text, setText) => add_answer(FormConfig, setFormConfig, comment_id, answerable_id, answerable_type, text, setText)
+            event: (text, setText, isValidText, setTextError) => add_answer(FormConfig, setFormConfig, comment_id, answerable_id, answerable_type, text, setText, isValidText, setTextError)
         }))
     }
 
@@ -183,7 +183,7 @@ export default function CommentSection() {
                             Comments.map(comment => (
                                 <Comment key={comment.id} data={comment} onAnswerEvent={() => add_answer_handler(comment.id, comment.id, 'Comment', comment.user)}>
                                     {
-                                        comment.answers.map((answer,index) => (
+                                        comment.answers.map((answer, index) => (
                                             <Comment key={answer.id} answerMode={true} isLast={index == comment.answers.length - 1} data={answer} onAnswerEvent={() => add_answer_handler(comment.id, answer.id, 'Answer', answer.user)}></Comment>
                                         ))
                                     }

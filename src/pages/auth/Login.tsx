@@ -24,7 +24,7 @@ export default function Login() {
   const loginSubmit = () => {
     // validation
     if (!isValidPhone()) {
-      return setPhoneError(null);
+      return setPhoneError();
     }
 
     // request

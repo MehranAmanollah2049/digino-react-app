@@ -7,7 +7,8 @@ interface ReturnType {
     setData: React.Dispatch<any>,
     error: string | null,
     isValid: () => boolean,
-    setError: React.Dispatch<any>
+    setError: () => void,
+    setErrorMsg: React.Dispatch<any>
 }
 
 export function useField(validationCallBack: ValidationCallback, intialValue: any = ''): ReturnType {
@@ -22,6 +23,7 @@ export function useField(validationCallBack: ValidationCallback, intialValue: an
         }
     }
 
+
     useEffect(() => {
         if (isValid()) {
             setErrorMsg('')
@@ -33,6 +35,7 @@ export function useField(validationCallBack: ValidationCallback, intialValue: an
         setData,
         error,
         isValid,
-        setError
+        setError,
+        setErrorMsg
     }
 }

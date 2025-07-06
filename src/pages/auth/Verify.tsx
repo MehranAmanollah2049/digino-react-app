@@ -30,7 +30,7 @@ export default function Verify() {
     const verify = () => {
         // validation
         if (!isValidCode()) {
-            return setCodeError(null)
+            return setCodeError()
         }
 
         // request

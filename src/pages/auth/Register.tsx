@@ -33,11 +33,11 @@ export default function Register() {
     const registerSubmit = () => {
         // validation
         if (!isValidName()) {
-            setNameError(null);
+            setNameError();
         }
 
         if (!isValidFamily()) {
-            setFamilyError(null)
+            setFamilyError()
         }
 
         if (isValidName() && isValidFamily()) {

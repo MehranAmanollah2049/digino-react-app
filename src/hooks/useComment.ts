@@ -18,6 +18,8 @@ export default function useComment() {
         setText: React.Dispatch<React.SetStateAction<string>>,
         score: string,
         setScore: React.Dispatch<React.SetStateAction<string>>,
+        isValidText: () => boolean, 
+        setTextError: () => void
     ) => {
 
         if (!isLoggedIn()) {
@@ -25,10 +27,15 @@ export default function useComment() {
             return;
         }
 
-        if (text.trim() === '' || score.trim() === '') {
-            toast.error("لطفا اطلاعات خواسته شده را وارد کنید");
-            return;
+        if(!isValidText()) {
+            setTextError();
         }
+
+        if (score.trim() === '') {
+            toast.error("لطفا اطلاعات خواسته شده را وارد کنید");
+        }
+
+        if(score.trim() == '' || !isValidText()) return
 
         if (!FormConfig.loading) {
             setFormConfig(prev => ({ ...prev, loading: true }));
@@ -60,14 +67,16 @@ export default function useComment() {
         answerable_type: string,
         text: string,
         setText: React.Dispatch<React.SetStateAction<string>>,
+        isValidText: () => boolean, 
+        setTextError: () => void
     ) => {
         if (!isLoggedIn()) {
             toast.error("ابتدا وارد حساب خود شوید");
             return;
         }
 
-        if (text.trim() === '') {
-            toast.error("لطفا اطلاعات خواسته شده را وارد کنید");
+        if(!isValidText()) {
+            setTextError();
             return;
         }
         

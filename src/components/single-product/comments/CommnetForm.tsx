@@ -5,6 +5,7 @@ import ScoreBox from "./ScoreBox";
 import BaseInput from "../../inputs/BaseInput";
 import Loading from "../../Loading";
 import { useEffect, useState } from "react";
+import { useField } from "../../../hooks/useField";
 
 type Props = {
     FormConfig: FormConfigType,
@@ -13,8 +14,10 @@ type Props = {
 
 export default function CommnetForm({ FormConfig, setFormConfig }: Props) {
 
-    const [text , setText] = useState<string>('');
-    const [score , setScore] = useState<string>('');
+    const { data: text, setData: setText, error: errorText, isValid: isValidText, setError: setTextError, setErrorMsg } = useField((value) => {
+        return value == '' ? 'لطفا متن دیدگاه خود را وارد کنید' : null;
+    }, '');
+    const [score, setScore] = useState<string>('');
 
     const toggle_score = (value: string): void => {
         if (score == value) {
@@ -27,8 +30,9 @@ export default function CommnetForm({ FormConfig, setFormConfig }: Props) {
 
     useEffect(() => {
         setText('');
-        setScore('')
-    },[FormConfig.active])
+        setScore('');
+        setErrorMsg('')
+    }, [FormConfig.active])
 
     return (
         <Sheet
@@ -45,12 +49,12 @@ export default function CommnetForm({ FormConfig, setFormConfig }: Props) {
                 <Sheet.Content>
                     <div className="w-full flex items-center justify-center pt-3 pb-5">
                         <div className="w-[92%] min-[550px]:w-[350px] flex flex-col gap-5">
-                             <div className="w-full flex items-center justify-start text-theme font-bold text-[18px]">{FormConfig.title}</div>
+                            <div className="w-full flex items-center justify-start text-theme font-bold text-[18px]">{FormConfig.title}</div>
                             {
                                 FormConfig.score_status && (
                                     <div className="w-full flex items-start justify-center flex-col gap-2">
                                         <div className="w-full flex items-center justify-start text-dark-500 font-medium text-[17px]">امتیاز شما</div>
-                                        <div className="w-full flex items-center justify-center gap-3">
+                                        <div className="w-full flex-col min-[340px]:flex-row flex items-center justify-center gap-3">
                                             <ScoreBox onSelect={() => toggle_score('پیشنهاد نمی کنم')} title="پیشنهاد نمی کنم" score={score}>
                                                 <svg stroke="currentColor" fill="currentColor" strokeWidth="0"
                                                     viewBox="0 0 1024 1024" className={`size-7 transition-all ${score == "پیشنهاد نمی کنم" && 'text-dark-500'}`} height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -87,11 +91,11 @@ export default function CommnetForm({ FormConfig, setFormConfig }: Props) {
                             <div className="w-full flex items-start justify-center flex-col gap-2">
                                 <div className="w-full flex items-center justify-start text-dark-500 font-medium text-[17px]">متن</div>
                                 <div className="w-full flex items-center justify-center gap-3">
-                                    <BaseInput isTextArea={true} error={null} state={text} setState={setText} title="متن دیدگاه..." />
+                                    <BaseInput isTextArea={true} error={errorText} state={text} setState={setText} title="متن دیدگاه..." />
                                 </div>
                             </div>
 
-                            <div className={`btn-dark text-[15.5px] w-full mt-2 cursor-pointer !h-[50px] ${FormConfig.loading ? "loading" : ""}`} onClick={() => FormConfig.event(text,setText,score,setScore)}>
+                            <div className={`btn-dark text-[15.5px] w-full mt-2 cursor-pointer !h-[50px] ${FormConfig.loading ? "loading" : ""}`} onClick={() => FormConfig.event(text, setText,isValidText,setTextError,score, setScore)}>
                                 {FormConfig.loading ? <Loading /> : "ثبت دیدگاه"}
                             </div>
                         </div>
