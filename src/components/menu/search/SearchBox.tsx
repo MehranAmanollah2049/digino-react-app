@@ -80,8 +80,8 @@ export default function SearchBox({ isActive, setIsActive }: Props) {
                     <div className="w-full flex items-start justify-center flex-col gap-2 mt-5">
                         <p className="text-theme font-medium text-[15px]">دسترسی سریع</p>
                         <div className="w-full flex items-center justify-start flex-wrap gap-2">
-                            <Link to={`/products?orderBy=populars`} className="h-[28px] border border-gray-200 rounded-full flex items-center justify-center text-[14px] text-gray-500 px-2 hover:text-theme transition-all">محبوب ترین</Link>
-                            <Link to={`/products?orderBy=news`} className="h-[28px] border border-gray-200 rounded-full flex items-center justify-center text-[14px] text-gray-500 px-2 hover:text-theme transition-all">جدید ترین</Link>
+                            <Link onClick={() => setIsActive(false)} to={`/products?orderBy=populars`} className="h-[28px] border border-gray-200 rounded-full flex items-center justify-center text-[14px] text-gray-500 px-2 hover:text-theme transition-all">محبوب ترین</Link>
+                            <Link onClick={() => setIsActive(false)} to={`/products?orderBy=news`} className="h-[28px] border border-gray-200 rounded-full flex items-center justify-center text-[14px] text-gray-500 px-2 hover:text-theme transition-all">جدید ترین</Link>
                         </div>
                     </div>
                     <div className="w-full flex items-center justify-between mt-4">
