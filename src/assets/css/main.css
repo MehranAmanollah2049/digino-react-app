@@ -14,6 +14,8 @@ body {
   --red-100: #ed194315;
   --dark-200: #334155;
   --dark-500: #171e29;
+  --green: #00c073;
+  --green-100: #3bce931e;
   --width: 1300px;
 }
 
@@ -34,6 +36,8 @@ body {
   --color-dark-500: var(--dark-500);
   --color-red: var(--red);
   --color-red-100: var(--red-100);
+  --color-green: var(--green);
+  --color-green-100: var(--green-100);
 
   --shadow-custom: 0px 4px 60px rgba(0, 0, 0, 0.089);
   --shadow-theme-100: 0px 4px 60px var(--theme-100);
@@ -51,7 +55,7 @@ body {
 
 @layer components {
   .btn-dark {
-    @apply rounded-md relative px-4 flex items-center justify-center text-[14px] text-white font-medium bg-dark-500 h-[43px] cursor-pointer;
+    @apply rounded-md relative px-4 flex items-center justify-center text-[14px] text-white font-medium bg-dark-500 h-[40px] cursor-pointer;
   }
 
   .btn-title {

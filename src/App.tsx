@@ -1,4 +1,4 @@
-import { Outlet, useLocation, useNavigation } from "react-router";
+import { Outlet, useLocation } from "react-router";
 import PrevUrlProvider from "./context/PrevUrlProvider";
 import useUser from "./stores/auth/useUser";
 import { useEffect } from "react";
@@ -12,6 +12,13 @@ export default function App() {
   useEffect(() => {
     fetchUser()
   }, [])
+
+  const location = useLocation();
+
+  useEffect(() => {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, [location]);
 
   return (
     <PrevUrlProvider>

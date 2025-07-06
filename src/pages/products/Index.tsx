@@ -54,7 +54,7 @@ export default function Index() {
     const is_filters_in_use = (Filters.search != '' || Filters.categorys.length != 0 || Filters.brands.length != 0 || Filters.price[0] != 0 || Filters.price[1] != MAX_PICE || Filters.orderBy != '');
 
     // actions
-    const fetchData = async (page: number = 1) => {
+    const fetchData = async (page: number = 1): Promise<void> => {
         const { categorys, brands, price, orderBy, search } = Filters;
 
         const params = new URLSearchParams({

@@ -129,7 +129,7 @@ export default function Home() {
                     <div className="w-full relative overflow-x-custom px-5 min-[550px]:px-0">
                         <div className="w-max flex min-[1300px]:w-full min-[1300px]:grid min-[1300px]:grid-cols-5">
                             {
-                                NewestProductsLoading ? [...new Array(5)].map((_, index) => <ProductCardLoading customClass={`w-[250px]`} key={index} />) : (NewestProduct.map(product => (<ProductCard key={product.id} product={product} customClass={`first:rounded-r-xl last:rounded-l-xl w-[250px] min-[1300px]:w-auto`} />)))
+                                NewestProductsLoading ? [1,2,3,4,5].map((_, index) => <ProductCardLoading customClass={`w-[250px]`} key={index} />) : (NewestProduct.map(product => (<ProductCard key={product.id} product={product} customClass={`first:rounded-r-xl last:rounded-l-xl w-[250px] min-[1300px]:w-auto`} />)))
                             }
                         </div>
                     </div>
@@ -164,7 +164,7 @@ export default function Home() {
                     <div className="w-full min-[1090px]:w-12/15 center relative overflow-x-custom min-[950px]:overflow-x-visible px-5 min-[1090px]:px-0 justify-start min-[950px]:justify-center ">
                         <div className="w-max flex min-[950px]:grid min-[950px]:w-full min-[950px]:grid-cols-4 bg-white rounded-xl">
                             {
-                                DiscountProductsLoading ? [...new Array(4)].map((_, index) => <ProductCardLoading customClass={`w-[250px]`} key={index} />) : (DiscountProduct.map(product => (<ProductCard key={product.id} product={product} customClass={`first:rounded-r-xl last:rounded-l-xl w-[250px] min-[950px]:w-auto`} />)))
+                                DiscountProductsLoading ? [1,2,3,4].map((_, index) => <ProductCardLoading customClass={`w-[250px]`} key={index} />) : (DiscountProduct.map(product => (<ProductCard key={product.id} product={product} customClass={`first:rounded-r-xl last:rounded-l-xl w-[250px] min-[950px]:w-auto`} />)))
                             }
                         </div>
                     </div>
@@ -191,7 +191,7 @@ export default function Home() {
                     <div className="w-full relative overflow-x-custom px-5 min-[550px]:px-0">
                         <div className="w-max flex min-[1300px]:w-full min-[1300px]:grid min-[1300px]:grid-cols-5">
                             {
-                                PopularProductsLoading ? [...new Array(5)].map((_, index) => <ProductCardLoading customClass={`w-[250px]`} key={index} />) : (PopularProduct.map(product => (<ProductCard key={product.id} product={product} customClass={`first:rounded-r-xl last:rounded-l-xl w-[250px] min-[1300px]:w-auto`} />)))
+                                PopularProductsLoading ? [1,2,3,4,5].map((_, index) => <ProductCardLoading customClass={`w-[250px]`} key={index} />) : (PopularProduct.map(product => (<ProductCard key={product.id} product={product} customClass={`first:rounded-r-xl last:rounded-l-xl w-[250px] min-[1300px]:w-auto`} />)))
                             }
                         </div>
                     </div>

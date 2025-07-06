@@ -20,6 +20,8 @@ interface UserStore {
     fetchUser: () => Promise<void>,
     logOut: () => Promise<void>,
     set_user: (user: User) => void,
+    increase_user_cart: () => void,
+    decrease_user_cart: () => void
 }
 
 const useUser = create<UserStore>((set, get) => {
@@ -40,7 +42,7 @@ const useUser = create<UserStore>((set, get) => {
                 }
 
             } catch (e) {
-                
+
                 removeToken()
                 set({ loading: false, user: null })
             }
@@ -68,7 +70,21 @@ const useUser = create<UserStore>((set, get) => {
 
     const set_user = (user: User) => set({ user })
 
-    const getUser = () => get().user
+    const increase_user_cart = () => {
+        const userData = get().user;
+
+        if (!userData) return;
+
+        set({ user: { ...userData, cart: userData.cart + 1 } })
+    }
+
+    const decrease_user_cart = () => {
+        const userData = get().user;
+
+        if (!userData) return;
+
+        set({ user: { ...userData, cart: userData.cart - 1 } })
+    }
 
     return {
         user: null,
@@ -78,6 +94,8 @@ const useUser = create<UserStore>((set, get) => {
         fetchUser,
         logOut,
         set_user,
+        increase_user_cart,
+        decrease_user_cart
     }
 });
 

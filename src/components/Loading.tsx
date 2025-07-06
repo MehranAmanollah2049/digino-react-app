@@ -5,7 +5,7 @@ type Props = {
 
 export default function Loading({ small = false }: Props) {
     return (
-        <svg className={`${small ? 'size-7' : 'size-10'} fill-black`} width="75" height="40" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="var(--theme)"
+        <svg className={`${small ? 'size-5 fill-theme' : 'size-10 fill-black'}`} width="75" height="40" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="var(--theme)"
             data-testid="three-dots-svg">
             <circle cx="15" cy="15" r="15">
                 <animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear"

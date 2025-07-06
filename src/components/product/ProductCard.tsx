@@ -12,7 +12,7 @@ type Props = {
 export default function ProductCard({ product, customClass }: Props) {
     
     const { HasLiked , isLikeLoading , handleLike } = useLike(product.id,product.likes)
-    
+
     return (
         <div className={`${customClass} min-[1300px]:w-full h-auto flex items-center justify-center flex-col gap-2 bg-white pt-5 border border-transparent relative transition-all hover:border-theme hover:shadow-theme-100 hover:z-1`}>
             <div className="w-full h-[145px] min-[470px]:h-[166px] flex items-center justify-center">
