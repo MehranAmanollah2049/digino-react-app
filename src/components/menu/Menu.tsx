@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import Logo from "../Logo";
 import useUser from "../../stores/auth/useUser";
 import BannerTitle from "./BannerTitle";
@@ -14,6 +14,7 @@ import { useEffect, useRef, useState } from "react";
 
 export default function Menu() {
 
+  const navigate = useNavigate()
   const { user, loading, logout_loading, isLoggedIn } = useUser();
   const { categorys, brands, isCategorysLoading } = useCategorys();
 
@@ -42,6 +43,8 @@ export default function Menu() {
       toast.error('ابتدا وارد حساب خود شوید')
       return;
     }
+
+    navigate('/cart')
   }
 
   return (

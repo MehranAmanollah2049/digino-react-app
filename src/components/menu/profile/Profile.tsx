@@ -1,21 +1,11 @@
 import { useState } from "react"
 import { Link } from "react-router"
-import useUser from "../../../stores/auth/useUser";
-import Nprogress from 'nprogress'
-import toast from "react-hot-toast";
+import useLogout from "../../../hooks/useLogout"
 
 export default function Profile() {
 
-    const { logOut } = useUser();
-
     const [isActive, setIsActive] = useState<boolean>(false)
-
-    const logout_handler = async(): Promise<void> => {
-        Nprogress.start();
-        await logOut();
-        Nprogress.done()
-        toast.success("از حساب خود خارج شدید")
-    }
+    const { logout_handler } = useLogout()
 
     return (
         <>

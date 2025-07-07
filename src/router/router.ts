@@ -10,6 +10,7 @@ const AuthLayout = lazy(() => import('../layouts/AuthLayout'));
 import GuestMiddleware from "../middlewares/GuestMiddleware";
 import VerifyAccessMiddleware from "../middlewares/VerifyAccessMiddleware";
 import RegisterAccessMiddleware from "../middlewares/RegisterAccessMiddleware";
+import AuthMiddleware from "../middlewares/AuthMiddleware";
 
 // pages
 const HomePage = lazy(() => import('../pages/Home'));
@@ -18,6 +19,8 @@ const VerifyPage = lazy(() => import('../pages/auth/Verify'));
 const RegisterPage = lazy(() => import('../pages/auth/Register'));
 const AllProductsPage = lazy(() => import('../pages/products/Index'));
 const SingleProductPage = lazy(() => import('../pages/products/Single'));
+const CartPage = lazy(() => import('../pages/Cart'));
+const OrderResultPage = lazy(() => import('../pages/OrderResult'));
 
 const router = createBrowserRouter([
     {
@@ -36,7 +39,9 @@ const router = createBrowserRouter([
                             { index: true , Component: AllProductsPage },
                             { path: ':id' , Component: SingleProductPage }
                         ]
-                    }
+                    },
+                    { path: '/cart' , Component: CartPage , loader: AuthMiddleware },
+                    { path:'/orders/:id' , Component: OrderResultPage }
                 ]
             },
 
