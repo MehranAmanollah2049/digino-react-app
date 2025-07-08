@@ -1,7 +1,8 @@
+
 import type { CartType } from "../types/ProductTypes";
 
 export default function useCartCalculator(Products: CartType[]) {
-    const available_carts: CartType[] = Products?.filter(cart => cart.count <= cart.total) || [];
+    const available_carts: CartType[] = Products?.filter(cart => cart.total != -1 ? cart.count <= cart.total : cart) || [];
 
     const total_price: number = available_carts?.reduce((total, current) => {
         if (current.price) {

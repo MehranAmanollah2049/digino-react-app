@@ -25,6 +25,7 @@ const OrderResultPage = lazy(() => import('../pages/OrderResult'));
 const DashboardPage = lazy(() => import('../pages/panel/Dashboard'));
 const LikesPage = lazy(() => import('../pages/panel/Likes'));
 const OrderPage = lazy(() => import('../pages/panel/orders/Index'));
+const OrderSinglePage = lazy(() => import('../pages/panel/orders/Single'));
 
 const router = createBrowserRouter([
     {
@@ -72,7 +73,8 @@ const router = createBrowserRouter([
                     {
                         path: 'orders',
                         children: [
-                            { index: true , Component: OrderPage }
+                            { index: true , Component: OrderPage },
+                            { path: ':id' , Component: OrderSinglePage }
                         ]
                     }
                 ]

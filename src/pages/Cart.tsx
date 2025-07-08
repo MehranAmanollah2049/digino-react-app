@@ -53,14 +53,13 @@ export default function Cart() {
 
             HttpRequest.post('/payment')
                 .then(res => {
-                    setIsLoading(false)
-                    Nprogress.done()
 
                     if (res) {
-
                         toast.loading("در حال انتقال به درگاه")
-
                         window.location.href = res.data.action
+                    } else {
+                        setIsLoading(false)
+                        Nprogress.done()
                     }
                 })
                 .catch(() => {

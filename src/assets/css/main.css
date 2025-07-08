@@ -65,6 +65,10 @@ body {
   .btn-dark.loading {
     @apply bg-gray-300 pointer-events-none
   }
+
+  .btn-title.loading {
+    pointer-events: none !important;
+  }
 }
 
 @layer utilities {
