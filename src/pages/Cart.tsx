@@ -166,7 +166,7 @@ export default function Cart() {
                         </div>
                     </div>
                 ) : (
-                    <div className="w-full min-h-[calc(100vh-385px)] flex flex-col items-center justify-center gap-2 font-bold text-gray-600">
+                    <div className="w-full min-h-[calc(100vh-385px)] min-[800px]:min-h-[calc(100vh-410px)] flex flex-col items-center justify-center gap-2 font-bold text-gray-600">
                         <img src="/empty-cart.svg" alt="" />
                         موردی یافت نشده
                     </div>
