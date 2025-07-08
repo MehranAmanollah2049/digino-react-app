@@ -24,6 +24,7 @@ const CartPage = lazy(() => import('../pages/Cart'));
 const OrderResultPage = lazy(() => import('../pages/OrderResult'));
 const DashboardPage = lazy(() => import('../pages/panel/Dashboard'));
 const LikesPage = lazy(() => import('../pages/panel/Likes'));
+const OrderPage = lazy(() => import('../pages/panel/orders/Index'));
 
 const router = createBrowserRouter([
     {
@@ -67,7 +68,13 @@ const router = createBrowserRouter([
                 loader: AuthMiddleware,
                 children: [
                     { index: true, Component: DashboardPage },
-                    { path: 'likes' , Component: LikesPage }
+                    { path: 'likes' , Component: LikesPage },
+                    {
+                        path: 'orders',
+                        children: [
+                            { index: true , Component: OrderPage }
+                        ]
+                    }
                 ]
             }
 
