@@ -69,7 +69,7 @@ export default function Comment({ data, onAnswerEvent, children, answerMode = fa
                         </div>
                     </div>
                 </div>
-                <div className="w-full text-title text-[17px]/8 pt-4 max-[650px]:text-[16px]/7" dangerouslySetInnerHTML={{ __html: data.text }}></div>
+                <div className="w-full text-title text-[16px]/7 pt-4 min-[650px]:text-[17px]/8" dangerouslySetInnerHTML={{ __html: data.text }}></div>
             </div >
             <div className="w-full flex items-center justify-center flex-col gap-3 pr-10 relative">
                 <div className="absolute bg-gray-200 w-[2px] h-full right-4 -top-[0.75rem]"></div>

@@ -5,8 +5,8 @@ import Nprogress from 'nprogress'
 import HttpRequest from "../api/ApiConfig";
 
 
-export default function useLike(id: number, LikeListInitial: number[]) {
-    
+export default function useLike(id: number, LikeListInitial: number[], callback?: (obj: { id: number, likes: number[] }) => void) {
+
     const { isLoggedIn, user } = useUser();
     const [isLikeLoading, setIsLikeLoading] = useState<boolean>(false)
     const [LikeList, setLikeList] = useState<number[]>(LikeListInitial)
@@ -31,12 +31,17 @@ export default function useLike(id: number, LikeListInitial: number[]) {
 
                     if (res) {
                         setLikeList(prev => {
-                            if (prev.includes(user!.id)) {
-                                return prev.filter(id => id !== user!.id)
-                            } else {
-                                return [...prev, user!.id]
+                            const updated = prev.includes(user!.id)
+                                ? prev.filter(id => id !== user!.id)
+                                : [...prev, user!.id];
+
+                            if (callback) {
+                                callback({ id, likes: updated });
                             }
+
+                            return updated;
                         });
+
                     }
                 })
                 .catch(() => {

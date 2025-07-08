@@ -5,6 +5,7 @@ import { lazy } from "react";
 // layouts
 const DefaultLayout = lazy(() => import('../layouts/DefaultLayout'));
 const AuthLayout = lazy(() => import('../layouts/AuthLayout'));
+const PanelLayout = lazy(() => import('../layouts/PanelLayout'));
 
 // middlewares
 import GuestMiddleware from "../middlewares/GuestMiddleware";
@@ -21,6 +22,7 @@ const AllProductsPage = lazy(() => import('../pages/products/Index'));
 const SingleProductPage = lazy(() => import('../pages/products/Single'));
 const CartPage = lazy(() => import('../pages/Cart'));
 const OrderResultPage = lazy(() => import('../pages/OrderResult'));
+const DashboardPage = lazy(() => import('../pages/panel/Dashboard'));
 
 const router = createBrowserRouter([
     {
@@ -32,16 +34,16 @@ const router = createBrowserRouter([
                 path: '/',
                 Component: DefaultLayout,
                 children: [
-                    { index: true , Component: HomePage },
+                    { index: true, Component: HomePage },
                     {
                         path: '/products',
                         children: [
-                            { index: true , Component: AllProductsPage },
-                            { path: ':id' , Component: SingleProductPage }
+                            { index: true, Component: AllProductsPage },
+                            { path: ':id', Component: SingleProductPage }
                         ]
                     },
-                    { path: '/cart' , Component: CartPage , loader: AuthMiddleware },
-                    { path:'/orders/:id' , Component: OrderResultPage }
+                    { path: '/cart', Component: CartPage, loader: AuthMiddleware },
+                    { path: '/orders/:id', Component: OrderResultPage }
                 ]
             },
 
@@ -51,9 +53,19 @@ const router = createBrowserRouter([
                 Component: AuthLayout,
                 loader: GuestMiddleware,
                 children: [
-                    { index: true , Component: LoginPage },
-                    { path: 'verify' , Component: VerifyPage , loader: VerifyAccessMiddleware },
-                    { path: 'register' , Component: RegisterPage , loader: RegisterAccessMiddleware },
+                    { index: true, Component: LoginPage },
+                    { path: 'verify', Component: VerifyPage, loader: VerifyAccessMiddleware },
+                    { path: 'register', Component: RegisterPage, loader: RegisterAccessMiddleware },
+                ]
+            },
+
+            // panel
+            {
+                path: '/panel',
+                Component: PanelLayout,
+                loader: AuthMiddleware,
+                children: [
+                    { index: true, Component: DashboardPage }
                 ]
             }
 

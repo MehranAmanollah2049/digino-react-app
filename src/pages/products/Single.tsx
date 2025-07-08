@@ -282,7 +282,7 @@ export default function Single() {
                                         Images.map(item => (
                                             <SwiperSlide key={item.id}>
                                                 <img src={`${BaseUrl}${item.image}`}
-                                                    className="w-full h-full object-contain max-[550px]:rounded-lg" alt="" />
+                                                    className="w-full h-full object-contain rounded-lg min-[550px]:rounded-none" alt="" />
                                             </SwiperSlide>
                                         ))
                                     }

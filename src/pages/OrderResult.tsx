@@ -53,7 +53,7 @@ export default function OrderResult() {
                                             fill="currentColor"></path>
                                     </svg>
                                 ) : (
-                                    <svg className="size-[50px] max-[500px]:size-[40px] translate-y-[3px] text-red" width="8" height="9" viewBox="0 0 8 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <svg className="size-[40px] min-[500px]:size-[40px] translate-y-[3px] text-red" width="8" height="9" viewBox="0 0 8 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M7.70784 1.71418C8.0984 1.32204 8.0984 0.68625 7.70784 0.294107C7.31728 -0.0980358 6.68405 -0.0980358 6.29349 0.294107L4.00038 2.5965L1.70727 0.294107C1.31671 -0.0980358 0.683483 -0.0980358 0.292921 0.294107C-0.0976404 0.68625 -0.0976404 1.32204 0.292921 1.71418L2.58603 4.01658L0.292921 6.31898C-0.0976404 6.71112 -0.0976404 7.34691 0.292921 7.73905C0.683483 8.13119 1.31671 8.13119 1.70727 7.73905L4.00038 5.43665L6.29349 7.73905C6.68405 8.13119 7.31728 8.13119 7.70784 7.73905C8.0984 7.34691 8.0984 6.71112 7.70784 6.31898L5.41473 4.01658L7.70784 1.71418Z" fill="currentColor"></path>
                                     </svg>
                                 )

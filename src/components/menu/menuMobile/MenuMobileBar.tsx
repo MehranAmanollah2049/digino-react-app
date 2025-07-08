@@ -42,22 +42,10 @@ export default function MenuMobileBar() {
                             <p className="w-[50%] rounded-full h-[8px] bg-gray-300 animate-pulse"></p>
                         </div>
                     )
-                    : <Link to={`${!isLoggedIn() ? '/auth' : '/panel'}`} className="w-1/4 h-full flex items-center justify-center flex-col gap-2 pt-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                            className="size-[21px] transform-[scale(1.140)] text-gray-500">
-                            <g stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.75"
-                                clipPath="url(#account_svg__a)">
-                                <path
-                                    d="M12 13.8c3.06 0 5.54-2.42 5.54-5.4C17.54 5.42 15.06 3 12 3S6.46 5.42 6.46 8.4c0 2.98 2.48 5.4 5.54 5.4ZM6 21c2.69-4.42 9.24-4.44 11.97-.05L18 21">
-                                </path>
-                            </g>
-                            <defs>
-                                <clipPath id="account_svg__a">
-                                    <path fill="#fff" d="M0 0h24v24H0z"></path>
-                                </clipPath>
-                            </defs>
-                        </svg>
-                        <span className="text-gray-500 font-medium text-[15px] transition-all">
+                    : <Link to={`${!isLoggedIn() ? '/auth' : '/panel'}`} className={`w-1/4 h-full flex items-center justify-center flex-col gap-2 pt-1 group ${location.pathname.startsWith('/panel') && 'active'}`}>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="size-[28px] -mb-[7px] text-gray-500 block transition-all group-[.active]:hidden" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="6" r="4"/><ellipse cx="12" cy="17" rx="7" ry="4"/></g></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="size-[28px] -mb-[7px] text-theme hidden transition-all group-[.active]:block" width="32" height="32" viewBox="0 0 24 24"><circle cx="12" cy="6" r="4" fill="currentColor"/><ellipse cx="12" cy="17" fill="currentColor" rx="7" ry="4"/></svg>
+                        <span className="text-gray-500 font-medium text-[15px] transition-all group-[.active]:text-theme">
                             {
                                 !isLoggedIn() ? 'حساب کاربری' : 'پروفایل'
                             }
