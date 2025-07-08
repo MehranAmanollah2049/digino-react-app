@@ -117,7 +117,7 @@ export default function Dashboard() {
                     </div>
                 </div>
             </div>
-            <div className="w-full pt-8 bg-white rounded-xl mt-5 py-5 px-5 min-[500px]:py-6 min-[500px]:px-8">
+            <div className="w-full py-6 bg-white rounded-xl mt-5 px-6 min-[500px]:py-6 min-[500px]:px-8">
                 <div className="w-full flex items-center justify-start">
                     <p className="font-heavy text-[18px] min-[500px]:text-[21px] text-theme pr-5 flex items-center justify-center relative after:size-2 after:rounded-full after:bg-theme after:absolute after:content-[''] after:transform-[translateY(-0.5px)] after:right-0">آخرین سفارشات</p>
                 </div>

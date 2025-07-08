@@ -4,9 +4,9 @@ import useLike from "../../../hooks/useLike";
 import { BaseUrl } from "../../../api/ApiConfig";
 import SpinnerLoading from "../../SpinnerLoading";
 
-export default function ProductLikeBox({ product , likeTracker }: { product: ProductCardType , likeTracker: () => void }) {
+export default function ProductLikeBox({ product, likeTracker }: { product: ProductCardType, likeTracker: (obj: { id: number, likes: number[] }) => void }) {
 
-    const { HasLiked, isLikeLoading, handleLike } = useLike(product.id, product.likes , () => likeTracker())
+    const { HasLiked, isLikeLoading, handleLike } = useLike(product.id, product.likes, (obj) => likeTracker(obj))
 
     return (
         <div className="w-full border border-gray-200/70 py-3 px-5 rounded-lg flex items-center justify-between flex-col gap-2 min-[750px]:flex-row min-[750px]:gap-0">

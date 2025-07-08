@@ -23,6 +23,7 @@ const SingleProductPage = lazy(() => import('../pages/products/Single'));
 const CartPage = lazy(() => import('../pages/Cart'));
 const OrderResultPage = lazy(() => import('../pages/OrderResult'));
 const DashboardPage = lazy(() => import('../pages/panel/Dashboard'));
+const LikesPage = lazy(() => import('../pages/panel/Likes'));
 
 const router = createBrowserRouter([
     {
@@ -65,7 +66,8 @@ const router = createBrowserRouter([
                 Component: PanelLayout,
                 loader: AuthMiddleware,
                 children: [
-                    { index: true, Component: DashboardPage }
+                    { index: true, Component: DashboardPage },
+                    { path: 'likes' , Component: LikesPage }
                 ]
             }
 
