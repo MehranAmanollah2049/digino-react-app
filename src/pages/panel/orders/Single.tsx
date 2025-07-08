@@ -93,12 +93,12 @@ export default function Single() {
 
             HttpRequest.post(`/panel/orders/${params.id}/payment`)
                 .then(res => {
+                    Nprogress.done()
                     if (res) {
                         toast.loading("در حال انتقال به درگاه")
                         window.location.href = res.data.action
                     } else {
                         setIsPaymentLoading(false)
-                        Nprogress.done()
                     }
                 })
                 .catch(() => {
