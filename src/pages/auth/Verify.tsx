@@ -72,7 +72,7 @@ export default function Verify() {
     }
 
     // resend
-    const [resendLoading, setResendLoading] = useState(false);
+    const [resendLoading, setResendLoading] = useState<boolean>(false);
     const timerDuration = 120;
 
 
@@ -181,10 +181,7 @@ export default function Verify() {
                         </p>
                     </div>
                 </div>
-                <div
-                    className="w-full h-[58px] md:h-[63px] mt-4 flex gap-2"
-                    style={{ direction: "ltr" }}
-                >
+                <div className="w-full h-[58px] md:h-[63px] mt-4 flex gap-2" style={{ direction: "ltr" }}>
                     <OtpInput state={code} setState={setCode} error={errorCode} />
                     <div onClick={resendHandler} className={`w-1/5 h-full bg-gray-100 rounded-md flex items-center justify-center flex-col gap-[2px] ${seconds > 0 ? "pointer-events-none" : "cursor-pointer"}`}>
                         {!resendLoading ? (

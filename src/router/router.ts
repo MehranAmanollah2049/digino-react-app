@@ -26,6 +26,7 @@ const DashboardPage = lazy(() => import('../pages/panel/Dashboard'));
 const LikesPage = lazy(() => import('../pages/panel/Likes'));
 const OrderPage = lazy(() => import('../pages/panel/orders/Index'));
 const OrderSinglePage = lazy(() => import('../pages/panel/orders/Single'));
+const ProfilePage = lazy(() => import('../pages/panel/Profile'));
 
 const router = createBrowserRouter([
     {
@@ -76,7 +77,8 @@ const router = createBrowserRouter([
                             { index: true , Component: OrderPage },
                             { path: ':id' , Component: OrderSinglePage }
                         ]
-                    }
+                    },
+                    { path: 'profile' , Component: ProfilePage }
                 ]
             }
 

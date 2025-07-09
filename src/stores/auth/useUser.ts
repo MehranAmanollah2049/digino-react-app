@@ -1,13 +1,12 @@
 import { create } from "zustand";
 import useToken from "./useToken";
 import HttpRequest from "../../api/ApiConfig";
-import { redirect, useLocation, useNavigate } from "react-router";
 
 interface UserData {
     id: number,
     name: string,
     lastname: string,
-    phone: number,
+    phone: number | string,
     cart: number
 }
 
@@ -22,13 +21,15 @@ interface UserStore {
     logOut: () => Promise<void>,
     set_user: (user: User) => void,
     increase_user_cart: () => void,
-    decrease_user_cart: () => void
+    decrease_user_cart: () => void,
+    update_user_name_family: (name: string, lastname: string) => void,
+    update_user_phone: (phone: number | string) => void
 }
 
 const useUser = create<UserStore>((set, get) => {
     const { removeToken, getToken } = useToken.getState();
 
-    const fetchUser = async () => {
+    const fetchUser = async (): Promise<void> => {
         if (getToken()) {
             set({ loading: true })
 
@@ -53,7 +54,7 @@ const useUser = create<UserStore>((set, get) => {
         }
     }
 
-    const logOut = async () => {
+    const logOut = async (): Promise<void> => {
         if (!get().logout_loading) {
             set({ logout_loading: true })
             try {
@@ -67,25 +68,34 @@ const useUser = create<UserStore>((set, get) => {
         }
     }
 
-    const isLoggedIn = () => !!getToken() && !!get().user
+    const isLoggedIn = (): boolean => !!getToken() && !!get().user
 
-    const set_user = (user: User) => set({ user })
+    const set_user = (user: User): void => set({ user })
 
-    const increase_user_cart = () => {
+    const update_user = (data: Partial<UserData>): void => {
         const userData = get().user;
 
         if (!userData) return;
 
-        set({ user: { ...userData, cart: userData.cart + 1 } })
-    }
+        set({ user: { ...userData, ...data } });
+    };
 
-    const decrease_user_cart = () => {
-        const userData = get().user;
+    const increase_user_cart = (): void => {
+        update_user({ cart: (get().user?.cart ?? 0) + 1 });
+    };
 
-        if (!userData) return;
+    const decrease_user_cart = (): void => {
+        update_user({ cart: (get().user?.cart ?? 0) - 1 });
+    };
 
-        set({ user: { ...userData, cart: userData.cart - 1 } })
-    }
+    const update_user_name_family = (name: string, lastname: string): void => {
+        update_user({ name, lastname });
+    };
+
+    const update_user_phone = (phone: number | string): void => {
+        update_user({ phone });
+    };
+
 
     return {
         user: null,
@@ -96,7 +106,9 @@ const useUser = create<UserStore>((set, get) => {
         logOut,
         set_user,
         increase_user_cart,
-        decrease_user_cart
+        decrease_user_cart,
+        update_user_name_family,
+        update_user_phone
     }
 });
 
