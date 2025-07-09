@@ -5,7 +5,7 @@ return [
 
     'allowed_methods' => ['*'], // همه متدها (GET, POST, PUT, DELETE)
 
-    'allowed_origins' => ['https://store.mehran-dev.com'],
+    'allowed_origins' => ['https://store.mehran-dev.com','http://store.mehran-dev.com'],
 
     'allowed_origins_patterns' => [],
 
