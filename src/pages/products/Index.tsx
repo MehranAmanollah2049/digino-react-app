@@ -73,6 +73,7 @@ export default function Index() {
             Nprogress.start()
             await HttpRequest.get(`/products?${params.toString()}`)
                 .then(res => {
+                    Nprogress.done()
                     setProductLoading(false)
                     setProducts(res.data)
                     document.documentElement.scrollTop = 0
