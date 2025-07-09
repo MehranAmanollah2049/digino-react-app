@@ -10,6 +10,7 @@ import { usePrevUrl } from "../../context/PrevUrlProvider";
 import useToken from "../../stores/auth/useToken";
 import useUser from "../../stores/auth/useUser";
 import { useField } from "../../hooks/useField";
+import Nprogress from 'nprogress'
 
 export default function Register() {
 
@@ -44,6 +45,7 @@ export default function Register() {
             // request
             if (!isLoading) {
                 setLoading(true)
+                Nprogress.start()
 
                 HttpRequest.post('/auth/register', {
                     name,
@@ -52,6 +54,7 @@ export default function Register() {
                 })
                     .then(res => {
                         setLoading(false)
+                        Nprogress.done()
 
                         if (res) {
 
@@ -68,6 +71,7 @@ export default function Register() {
                     })
                     .catch(() => {
                         setLoading(false)
+                        Nprogress.done()
                     })
             }
         }

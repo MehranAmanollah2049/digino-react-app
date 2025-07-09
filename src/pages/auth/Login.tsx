@@ -8,6 +8,7 @@ import HttpRequest from './../../api/ApiConfig'
 import toast from "react-hot-toast";
 import useAuth from "../../stores/auth/useAuth";
 import { usePrevUrl } from "../../context/PrevUrlProvider";
+import Nprogress from 'nprogress'
 
 export default function Login() {
 
@@ -30,11 +31,13 @@ export default function Login() {
     // request
     if (!isLoading) {
       setLoading(true)
+      Nprogress.start()
 
       HttpRequest.post('/auth', {
         phone
       })
         .then(res => {
+          Nprogress.done()
           if (res) {
             setPhoneNumber(phone)
             toast.success(`کد تایید برای شماره ${phone} ارسال گردید`)
@@ -46,6 +49,7 @@ export default function Login() {
         })
         .catch(() => {          
           setLoading(false)
+          Nprogress.done()
         })
     }
   };

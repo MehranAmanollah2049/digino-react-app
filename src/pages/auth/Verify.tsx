@@ -36,6 +36,7 @@ export default function Verify() {
         // request
         if (!isLoading) {
             setLoading(true)
+            Nprogress.start()
 
             HttpRequest.post('/auth/verify', {
                 phone: phoneNumber,
@@ -43,6 +44,7 @@ export default function Verify() {
             })
                 .then(res => {
                     setLoading(false)
+                    Nprogress.done()
 
                     if (res) {
 
@@ -67,6 +69,7 @@ export default function Verify() {
                 })
                 .catch(() => {
                     setLoading(false)
+                    Nprogress.done()
                 })
         }
     }
