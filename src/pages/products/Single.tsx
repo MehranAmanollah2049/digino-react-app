@@ -74,15 +74,19 @@ export default function Single() {
     const [CartLoading, setCartLoading] = useState<boolean>(false);
 
     // actions
-    const fetch_data = async (): Promise<void> => {
+    const fetch_data = (): void => {
         Nprogress.start()
-        await HttpRequest.get(`/products/${params.id}`)
+        HttpRequest.get(`/products/${params.id}`)
             .then(res => {
+                if (res) {
+                    setIsProductLoading(false);
+                    Nprogress.done();
 
-                setIsProductLoading(false);
+                    setProduct(res.data)
+                }
+            })
+            .catch(() => {
                 Nprogress.done();
-
-                setProduct(res.data)
             })
     }
 
@@ -236,30 +240,28 @@ export default function Single() {
     // hooks
     useEffect(() => {
         fetch_data()
-    }, []);
+    }, [])
 
-    
+
 
     useEffect(() => {
-    if (!isTypeSet && Product.types.length > 0 && swiperInstance) {
-        const type = searchParams.get("type");
-        if (type) {
-            const index = Product.types.findIndex(item => item.id === parseInt(type));
-            if (index !== -1) {
-                setTypeIndex(index);
-                goToIndex(index);
+        if (!isTypeSet && Product.types.length > 0 && swiperInstance) {
+            const type = searchParams.get("type");
+            if (type) {
+                const index = Product.types.findIndex(item => item.id === parseInt(type));
+                if (index !== -1) {
+                    setTypeIndex(index);
+                    goToIndex(index);
+                }
             }
+            setIsTypeSet(true);
         }
-        setIsTypeSet(true);
-    }
-}, [Product, searchParams, swiperInstance, isTypeSet]);
+    }, [Product, searchParams, swiperInstance, isTypeSet]);
 
 
     // propertys
     const currentType = Product.types[TypeIndex];
     const Images = Product.types.map(type => ({ id: type.id, image: type.image }))
-
-
 
     return (
         <div className="w-full flex items-center justify-center pt-3 min-[900px]:pt-15">
@@ -360,7 +362,7 @@ export default function Single() {
 
                                         {/* count */}
                                         <div className={`h-[25px] text-[13px] flex items-center justify-center px-2 pt-[1px] rounded-full cursor-pointer font-medium ${currentType.count > 10 && 'bg-[#e9edff] text-[#4a6dff]'} ${currentType.count <= 10 && 'bg-[#ed194311] text-[#ed1944]'}`}>
-                                            {currentType.count > 0 ? `${currentType.count} عدد موجود` : 'عدم موجودی'}
+                                            {currentType?.count > 0 ? `${currentType?.count} عدد موجود` : 'عدم موجودی'}
                                         </div>
                                     </>
                                 ) : (
@@ -427,8 +429,8 @@ export default function Single() {
                         {/* cart */}
                         {
                             !IsProductLoading && !user_loading ? (
-                                isLoggedIn() && currentType.cart_user ? (
-                                    <CartCounter next={next_handler} prev={prev_handler} count={currentType.cart_user.count} total={currentType.count} loading={CartLoading} />
+                                isLoggedIn() && currentType?.cart_user ? (
+                                    <CartCounter next={next_handler} prev={prev_handler} count={currentType?.cart_user.count} total={currentType?.count} loading={CartLoading} />
                                 ) : (
                                     <div className={`btn-dark transition-colors !h-[43px] gap-2 px-5 pb-[2px] ${CartLoading ? 'loading' : ''} ${currentType.count <= 0 ? 'disabled' : ''}`} onClick={add_to_cart}>
                                         {
@@ -449,7 +451,7 @@ export default function Single() {
                             {
                                 !IsProductLoading ? (
                                     <>
-                                        {currentType.discount ? (
+                                        {currentType?.discount ? (
                                             <div className="flex items-center justify-center gap-[7px] -mb-[3px]">
                                                 <p
                                                     className="text-[15.5px] text-gray-400/80 font-medium line-through transform-[translateY(0.5px)]">

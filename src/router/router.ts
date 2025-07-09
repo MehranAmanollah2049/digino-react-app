@@ -27,6 +27,8 @@ const LikesPage = lazy(() => import('../pages/panel/Likes'));
 const OrderPage = lazy(() => import('../pages/panel/orders/Index'));
 const OrderSinglePage = lazy(() => import('../pages/panel/orders/Single'));
 const ProfilePage = lazy(() => import('../pages/panel/Profile'));
+const NotFound = lazy(() => import('../pages/errors/NotFound'));
+const ServerError = lazy(() => import('../pages/errors/ServerError'));
 
 const router = createBrowserRouter([
     {
@@ -70,19 +72,27 @@ const router = createBrowserRouter([
                 loader: AuthMiddleware,
                 children: [
                     { index: true, Component: DashboardPage },
-                    { path: 'likes' , Component: LikesPage },
+                    { path: 'likes', Component: LikesPage },
                     {
                         path: 'orders',
                         children: [
-                            { index: true , Component: OrderPage },
-                            { path: ':id' , Component: OrderSinglePage }
+                            { index: true, Component: OrderPage },
+                            { path: ':id', Component: OrderSinglePage }
                         ]
                     },
-                    { path: 'profile' , Component: ProfilePage }
+                    { path: 'profile', Component: ProfilePage }
                 ]
-            }
-
+            },
         ]
+    },
+    // error page
+    {
+        path: '/500',
+        Component: ServerError
+    },
+    {
+        path: '*',
+        Component: NotFound
     }
 ]);
 

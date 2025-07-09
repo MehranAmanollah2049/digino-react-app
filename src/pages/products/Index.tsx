@@ -75,8 +75,11 @@ export default function Index() {
                 .then(res => {
                     setProductLoading(false)
                     setProducts(res.data)
-                    Nprogress.done()
                     document.documentElement.scrollTop = 0
+                })
+                .catch(() => {
+                    Nprogress.done()
+                    setProductLoading(false)
                 })
         }
 

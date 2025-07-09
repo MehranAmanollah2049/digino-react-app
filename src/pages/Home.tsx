@@ -48,16 +48,21 @@ export default function Home() {
     useEffect(() => {
         const loadData = async () => {
             Nprogress.start();
-            await Promise.all([
-                fetch_new_products(),
-                fetch_discount_products(),
-                fetch_popular_products()
-            ]);
-            Nprogress.done();
+            try {
+                await Promise.all([
+                    fetch_new_products(),
+                    fetch_discount_products(),
+                    fetch_popular_products()
+                ]);
+                Nprogress.done();
+            } catch (error) {
+                Nprogress.done();                
+            }
         };
 
         loadData();
     }, []);
+
 
     return (
         <>
@@ -123,13 +128,13 @@ export default function Home() {
                         </div>
                         <Link to={`/products?orderBy=news`} className="text-red text-[14px] flex items-center justify-center">
                             مشاهده همه
-                            <svg className="size-3 fill-theme -translate-y-[0.5px]" xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512"><path d="M10.6,12.71a1,1,0,0,1,0-1.42l4.59-4.58a1,1,0,0,0,0-1.42,1,1,0,0,0-1.41,0L9.19,9.88a3,3,0,0,0,0,4.24l4.59,4.59a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.42Z"/></svg>
+                            <svg className="size-3 fill-theme -translate-y-[0.5px]" xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512"><path d="M10.6,12.71a1,1,0,0,1,0-1.42l4.59-4.58a1,1,0,0,0,0-1.42,1,1,0,0,0-1.41,0L9.19,9.88a3,3,0,0,0,0,4.24l4.59,4.59a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.42Z" /></svg>
                         </Link>
                     </div>
                     <div className="w-full relative overflow-x-custom px-5 min-[550px]:px-0">
                         <div className="w-max flex min-[1300px]:w-full min-[1300px]:grid min-[1300px]:grid-cols-5">
                             {
-                                NewestProductsLoading ? [1,2,3,4,5].map((_, index) => <ProductCardLoading customClass={`w-[250px]`} key={index} />) : (NewestProduct.map(product => (<ProductCard key={product.id} product={product} customClass={`first:rounded-r-xl last:rounded-l-xl w-[250px] min-[1300px]:w-auto`} />)))
+                                NewestProductsLoading ? [1, 2, 3, 4, 5].map((_, index) => <ProductCardLoading customClass={`w-[250px]`} key={index} />) : (NewestProduct.map(product => (<ProductCard key={product.id} product={product} customClass={`first:rounded-r-xl last:rounded-l-xl w-[250px] min-[1300px]:w-auto`} />)))
                             }
                         </div>
                     </div>
@@ -158,13 +163,13 @@ export default function Home() {
                         <Link to="/products"
                             className="bg-white flex items-center justify-center rounded-full px-3 py-[5px] pt-[6px] text-title text-[15px]">
                             مشاهده همه
-                            <svg className="size-3 fill-theme -translate-y-[0.5px]" xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512"><path d="M10.6,12.71a1,1,0,0,1,0-1.42l4.59-4.58a1,1,0,0,0,0-1.42,1,1,0,0,0-1.41,0L9.19,9.88a3,3,0,0,0,0,4.24l4.59,4.59a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.42Z"/></svg>
+                            <svg className="size-3 fill-theme -translate-y-[0.5px]" xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512"><path d="M10.6,12.71a1,1,0,0,1,0-1.42l4.59-4.58a1,1,0,0,0,0-1.42,1,1,0,0,0-1.41,0L9.19,9.88a3,3,0,0,0,0,4.24l4.59,4.59a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.42Z" /></svg>
                         </Link>
                     </div>
                     <div className="w-full min-[1090px]:w-12/15 center relative overflow-x-custom min-[950px]:overflow-x-visible px-5 min-[1090px]:px-0 justify-start min-[950px]:justify-center ">
                         <div className="w-max flex min-[950px]:grid min-[950px]:w-full min-[950px]:grid-cols-4 bg-white rounded-xl">
                             {
-                                DiscountProductsLoading ? [1,2,3,4].map((_, index) => <ProductCardLoading customClass={`w-[250px]`} key={index} />) : (DiscountProduct.map(product => (<ProductCard key={product.id} product={product} customClass={`first:rounded-r-xl last:rounded-l-xl w-[250px] min-[950px]:w-auto`} />)))
+                                DiscountProductsLoading ? [1, 2, 3, 4].map((_, index) => <ProductCardLoading customClass={`w-[250px]`} key={index} />) : (DiscountProduct.map(product => (<ProductCard key={product.id} product={product} customClass={`first:rounded-r-xl last:rounded-l-xl w-[250px] min-[950px]:w-auto`} />)))
                             }
                         </div>
                     </div>
@@ -185,13 +190,13 @@ export default function Home() {
                         <Link to={`/products?orderBy=populars`} className="text-red text-[14px] flex items-center justify-center">
                             مشاهده همه
 
-                            <svg className="size-3 fill-theme -translate-y-[0.5px]" xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512"><path d="M10.6,12.71a1,1,0,0,1,0-1.42l4.59-4.58a1,1,0,0,0,0-1.42,1,1,0,0,0-1.41,0L9.19,9.88a3,3,0,0,0,0,4.24l4.59,4.59a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.42Z"/></svg>
+                            <svg className="size-3 fill-theme -translate-y-[0.5px]" xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512"><path d="M10.6,12.71a1,1,0,0,1,0-1.42l4.59-4.58a1,1,0,0,0,0-1.42,1,1,0,0,0-1.41,0L9.19,9.88a3,3,0,0,0,0,4.24l4.59,4.59a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.42Z" /></svg>
                         </Link>
                     </div>
                     <div className="w-full relative overflow-x-custom px-5 min-[550px]:px-0">
                         <div className="w-max flex min-[1300px]:w-full min-[1300px]:grid min-[1300px]:grid-cols-5">
                             {
-                                PopularProductsLoading ? [1,2,3,4,5].map((_, index) => <ProductCardLoading customClass={`w-[250px]`} key={index} />) : (PopularProduct.map(product => (<ProductCard key={product.id} product={product} customClass={`first:rounded-r-xl last:rounded-l-xl w-[250px] min-[1300px]:w-auto`} />)))
+                                PopularProductsLoading ? [1, 2, 3, 4, 5].map((_, index) => <ProductCardLoading customClass={`w-[250px]`} key={index} />) : (PopularProduct.map(product => (<ProductCard key={product.id} product={product} customClass={`first:rounded-r-xl last:rounded-l-xl w-[250px] min-[1300px]:w-auto`} />)))
                             }
                         </div>
                     </div>

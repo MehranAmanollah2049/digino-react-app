@@ -27,6 +27,7 @@ HttpRequest.interceptors.response.use(
             toast.error("خطای احراز هویت");
         } else {
             toast.error("خطایی در ارتباط با سرور رخ داد");
+            window.location.href = "/500"
         }
     }
 );
