@@ -13,11 +13,11 @@ export default function PanelLayout() {
     const { logout_handler } = useLogout()
 
     return (
-        <div className="w-full min-h-lvh bg-gray-200/30">
+        <div className="w-full min-h-dvh bg-gray-200/30">
             <div className="w-full flex items-center justify-center mb-[73px] min-[800px]:mb-[0px]">
                 <div className="w-custom flex items-start justify-between gap-3 py-4 min-[1250px]:py-[2rem]">
                     {/* sidebar */}
-                    <div className={`w-[280px] z-55 min-[1250px]:w-12/55 h-lvh min-[1250px]:h-[calc(100lvh-4rem)] fixed min-[1250px]:sticky top-0 min-[1250px]:top-[2rem] ${isMenuActive ? 'right-0' : '-right-[290px]'} transition-all bg-white min-[1250px]:rounded-xl p-5 overflow-y-custom flex items-center justify-between flex-col gap-5`}>
+                    <div className={`w-[280px] z-55 min-[1250px]:w-12/55 h-dvh min-[1250px]:h-[calc(100dvh-4rem)] fixed min-[1250px]:sticky top-0 min-[1250px]:top-[2rem] ${isMenuActive ? 'right-0' : '-right-[290px]'} transition-all bg-white min-[1250px]:rounded-xl p-5 overflow-y-custom flex items-center justify-between flex-col gap-5`}>
                         <div className="w-full flex items-center justify-start flex-col gap-5">
                             {/* user-info + logo */}
                             <div className="w-full flex items-center justify-center flex-col gap-[25px]">
@@ -116,7 +116,7 @@ export default function PanelLayout() {
                     </div>
 
                     {/* overlay */}
-                    <div className={`fixed transition-all inset-0 z-54 bg-black ${isMenuActive ? 'opacity-50 visiable' : 'opacity-0 invisible'}`} onClick={() => setIsMenuActive(false)}></div>
+                    <div className={`fixed transition-all block min-[1250px]:hidden inset-0 z-54 bg-black ${isMenuActive ? 'opacity-50 visiable' : 'opacity-0 invisible'}`} onClick={() => setIsMenuActive(false)}></div>
 
                     {/* main content */}
                     <div className="w-full min-[1250px]:w-42/55 flex flex-col">
