@@ -16,55 +16,45 @@ class AuthenticationController extends Controller
 {
     public function login(LoginRequest $request, SmsService $smsService)
     {
-        // validation
         $validated = $request->validated();
+        $phone = $validated['phone'];
 
-        // send code
-        $code = mt_rand(1000, 9999);
+        $code = Cache::remember("authentication-code-$phone", now()->addMinutes(2), fn () => mt_rand(1000, 9999));
 
-        $result = $smsService->send($validated['phone'], getNotificationPattern('active-code'), ["$code"]);
+        $result = $smsService->send($phone, getNotificationPattern('active-code'), ["$code"]);
 
-        if(!$result) {
-            return response()->json([
-                "message" => "connection error",
-            ],500);
+        if (!$result) {
+            return response()->json(["message" => "connection error"], 500);
         }
 
-        // store code in cache
-        Cache::set("authentication-code-$validated[phone]", $code, now()->addMinutes(2));
-
-        //  success
-        return response()->json([
-            "message" => "otp sent"
-        ]);
+        return response()->json(["message" => "otp sent"]);
     }
+
 
     public function verify(VerifyRequest $request)
     {
-        // validation
         $validated = $request->validated();
-
-        // user-phone
         $phone = $validated['phone'];
+        $cachedCode = Cache::get("authentication-code-$phone");
 
-        // validate code
-        if (!Cache::has("authentication-code-$phone")) {
+        if (!$cachedCode) {
             return response()->json([
                 "message" => "validation error",
                 "error" => "کد یکبار مصرف منقضی شده"
-            ],422);
+            ], 422);
         }
 
-        if ($validated['otp'] != Cache::get("authentication-code-$phone")) {
+        if ($validated['otp'] != $cachedCode) {
             return response()->json([
                 "message" => "validation error",
                 "error" => "کد وارد شده صحیح نمی باشد"
-            ],422);
+            ], 422);
         }
 
-        // find user
-        if ($user = User::wherePhone($phone)->first()) {
-            $token = $user->createToken($phone, ['*'], now()->addMonths(2))->plainTextToken;
+        $user = User::where('phone', $phone)->first();
+
+        if ($user) {
+            $token = $user->createToken($phone, ['*'], now()->addMonth())->plainTextToken;
 
             return response()->json([
                 "message" => "login required",
@@ -73,13 +63,11 @@ class AuthenticationController extends Controller
             ]);
         }
 
-        // register permission
-        Cache::set("authentication-register-$phone", true);
+        Cache::put("authentication-register-$phone", true, now()->addMinutes(10));
 
-        return response()->json([
-            "message" => "register required"
-        ]);
+        return response()->json(["message" => "register required"]);
     }
+
 
     public function resend(LoginRequest $request, SmsService $smsService)
     {
