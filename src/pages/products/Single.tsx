@@ -430,7 +430,7 @@ export default function Single() {
                                 isLoggedIn() && currentType.cart_user ? (
                                     <CartCounter next={next_handler} prev={prev_handler} count={currentType.cart_user.count} total={currentType.count} loading={CartLoading} />
                                 ) : (
-                                    <div className={`btn-title transition-colors !h-[43px] gap-2 px-5 pb-[2px] ${CartLoading ? 'loading' : ''} ${currentType.count <= 0 ? 'disabled' : ''}`} onClick={add_to_cart}>
+                                    <div className={`btn-dark transition-colors !h-[43px] gap-2 px-5 pb-[2px] ${CartLoading ? 'loading' : ''} ${currentType.count <= 0 ? 'disabled' : ''}`} onClick={add_to_cart}>
                                         {
                                             !CartLoading ? (
                                                 <>
