@@ -2,7 +2,7 @@ import axios, { type AxiosInstance } from "axios";
 import toast from "react-hot-toast";
 import useToken from "../stores/auth/useToken";
 
-const BaseUrl: string = "http://localhost:8000";
+const BaseUrl: string = "https://store-back.mehran-dev.com";
 
 const HttpRequest: AxiosInstance = axios.create({
     baseURL: BaseUrl + "/api",
