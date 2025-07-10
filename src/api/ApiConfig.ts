@@ -13,7 +13,7 @@ const HttpRequest: AxiosInstance = axios.create({
 });
 
 HttpRequest.interceptors.request.use((config) => {
-      let { getToken } = useToken.getState();
+    let { getToken } = useToken.getState();
     config.headers["Authorization"] = `Bearer ${getToken()}`;
     return config;
 });
@@ -25,6 +25,9 @@ HttpRequest.interceptors.response.use(
             toast.error(error.response.data.error);
         } else if (error?.response?.status == 401) {
             toast.error("خطای احراز هویت");
+            if (window.location.pathname.startsWith('/cart') || window.location.pathname.startsWith('/panel')) {
+                window.location.href = "/";
+            }
         } else {
             toast.error("خطایی در ارتباط با سرور رخ داد");
             window.location.href = "/500"

@@ -217,7 +217,7 @@ export default function Single() {
                         data.status == Status.FAIL && !isLoading ? (
                             <div
                                 onClick={payment_handler}
-                                className={`btn-title !w-full transition-all h-[45px] rounded-lg text-[15px] font-bold min-[450px]:!w-auto ${isPaymentLoading && 'loading'}`}>
+                                className={`btn-dark !w-full transition-all h-[45px] rounded-lg text-[15px] font-bold min-[450px]:!w-auto ${isPaymentLoading && 'loading'}`}>
                                 {
                                     isPaymentLoading ? <Loading /> : 'نهایی سازی سفارش'
                                 }
