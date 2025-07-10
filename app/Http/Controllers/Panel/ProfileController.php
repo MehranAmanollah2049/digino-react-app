@@ -46,7 +46,7 @@ class ProfileController extends Controller
         }
 
         // store code in cache
-        $code = Cache::remember("profile-edit-phone-code-$validated[phone]", now()->addMinutes(2), fn () => $code);
+        Cache::set("profile-edit-phone-code-$validated[phone]", $code , now()->addMinutes(2));
 
         //  success
         return response()->json([
@@ -62,17 +62,15 @@ class ProfileController extends Controller
         // user-phone
         $phone = $validated['phone'];
 
-        $cachedCode = Cache::get("profile-edit-phone-code-$phone");
-
         // validate code
-        if (!$cachedCode) {
+        if (!Cache::has("profile-edit-phone-code-$phone")) {
             return response()->json([
                 "message" => "validation error",
                 "error" => "کد یکبار مصرف منقضی شده"
             ], 422);
         }
 
-        if ($validated['otp'] != $cachedCode) {
+        if ($validated['otp'] != Cache::get("profile-edit-phone-code-$phone")) {
             return response()->json([
                 "message" => "validation error",
                 "error" => "کد وارد شده صحیح نمی باشد"

@@ -27,7 +27,7 @@ class AuthenticationController extends Controller
             return response()->json(["message" => "connection error"], 500);
         }
 
-        $code = Cache::remember("authentication-code-$phone", now()->addMinutes(2), fn () => $code);
+        Cache::set("authentication-code-$phone", $code , now()->addMinutes(2));
 
         return response()->json(["message" => "otp sent"]);
     }
@@ -37,16 +37,15 @@ class AuthenticationController extends Controller
     {
         $validated = $request->validated();
         $phone = $validated['phone'];
-        $cachedCode = Cache::get("authentication-code-$phone");
 
-        if (!$cachedCode) {
+        if (!Cache::has("authentication-code-$phone")) {
             return response()->json([
                 "message" => "validation error",
                 "error" => "کد یکبار مصرف منقضی شده"
             ], 422);
         }
 
-        if ($validated['otp'] != $cachedCode) {
+        if ($validated['otp'] != Cache::get("authentication-code-$phone")) {
             return response()->json([
                 "message" => "validation error",
                 "error" => "کد وارد شده صحیح نمی باشد"
@@ -65,6 +64,7 @@ class AuthenticationController extends Controller
             ]);
         }
 
+        Cache::forget("authentication-code-$phone");
         Cache::put("authentication-register-$phone", true, now()->addMinutes(10));
 
         return response()->json(["message" => "register required"]);
