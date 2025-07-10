@@ -19,10 +19,7 @@ class ProfileController extends Controller
             'lastname' => ['required', 'string'],
         ]);
 
-        $request->user()->update([
-            'name' => $validated['name'],
-            'lastname' => $validated['lastname'],
-        ]);
+        $request->user()->update($validated);
 
         return response('ok');
     }
@@ -49,7 +46,7 @@ class ProfileController extends Controller
         }
 
         // store code in cache
-        Cache::set("profile-edit-phone-code-$validated[phone]", $code, now()->addMinutes(2));
+        $code = Cache::remember("profile-edit-phone-code-$validated[phone]", now()->addMinutes(2), fn () => $code);
 
         //  success
         return response()->json([
@@ -65,20 +62,23 @@ class ProfileController extends Controller
         // user-phone
         $phone = $validated['phone'];
 
+        $cachedCode = Cache::get("profile-edit-phone-code-$phone");
+
         // validate code
-        if (!Cache::has("profile-edit-phone-code-$phone")) {
+        if (!$cachedCode) {
             return response()->json([
                 "message" => "validation error",
                 "error" => "کد یکبار مصرف منقضی شده"
-            ],422);
+            ], 422);
         }
 
-        if ($validated['otp'] != Cache::get("profile-edit-phone-code-$phone")) {
+        if ($validated['otp'] != $cachedCode) {
             return response()->json([
                 "message" => "validation error",
                 "error" => "کد وارد شده صحیح نمی باشد"
-            ],422);
+            ], 422);
         }
+
 
         // find user
         $request->user()->update([

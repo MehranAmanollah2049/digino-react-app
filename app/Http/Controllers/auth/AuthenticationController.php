@@ -19,13 +19,15 @@ class AuthenticationController extends Controller
         $validated = $request->validated();
         $phone = $validated['phone'];
 
-        $code = Cache::remember("authentication-code-$phone", now()->addMinutes(2), fn () => mt_rand(1000, 9999));
-
+        $code = mt_rand(1000, 9999);
+        
         $result = $smsService->send($phone, getNotificationPattern('active-code'), ["$code"]);
 
         if (!$result) {
             return response()->json(["message" => "connection error"], 500);
         }
+
+        $code = Cache::remember("authentication-code-$phone", now()->addMinutes(2), fn () => $code);
 
         return response()->json(["message" => "otp sent"]);
     }
