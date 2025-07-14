@@ -2,7 +2,7 @@
 
 A modern, responsive e-commerce front-end built with **TypeScript**, **React**, and **Tailwind CSS**.
 
-🌐 [Live Demo](https://store.mehran-dev.com) • 🚀 Fast • 🎨 Beautiful • 📱 Mobile-first
+🌐 [Live Demo](https://digino.mehran-dev.com) • 🚀 Fast • 🎨 Beautiful • 📱 Mobile-first
 
 ---
 
@@ -16,4 +16,4 @@ A modern, responsive e-commerce front-end built with **TypeScript**, **React**, 
 
 ## 🚀 Demo
 
-👉 [**store.mehran-dev.com**](https://store.mehran-dev.com)
+👉 [**store.mehran-dev.com**](https://digino.mehran-dev.com)
